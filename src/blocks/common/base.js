@@ -1,3 +1,12 @@
+const EDIE_BLOCK_TYPE = {
+    MAIN: 'main',
+    COLUMN: 'column',
+    ROW: 'row',
+    TEXT: 'text',
+    BUTTON: 'button',
+    LOOP: 'loop',
+};
+
 function translateProps(props, translations) {
     let translated = {};
     Object.keys(props).forEach((key) => {
@@ -9,7 +18,6 @@ function translateProps(props, translations) {
     });
     return translated;
 }
-
 
 function propertiesToText(props, keysToIgnore) {
     let properties = '';
@@ -24,6 +32,7 @@ function propertiesToText(props, keysToIgnore) {
 
 
 export {
+    EDIE_BLOCK_TYPE,
     translateProps,
     propertiesToText,
 };

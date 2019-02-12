@@ -1,19 +1,11 @@
 import * as uuidv1 from 'uuid/v1';
+import {EDIE_BLOCK_TYPE} from './blocks/common/base';
 import {mainToMjml} from './blocks/main';
 import {textToMjml} from './blocks/text';
 import {rowToMjml} from './blocks/row';
 import {columnToMjml} from './blocks/column';
 import {buttonToMjml} from './blocks/button';
 import {loopToMjml} from './blocks/loop';
-
-const EDIE_BLOCK_TYPE = {
-    MAIN: 'main',
-    COLUMN: 'column',
-    ROW: 'row',
-    TEXT: 'text',
-    BUTTON: 'button',
-    LOOP: 'loop',
-};
 
 const blockToMjml = (item, childrenRenderer) => {
     switch (item.type) {
