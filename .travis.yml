@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+- '8'
+dist: trusty
+sudo: false
+install:
+- npm install
+script:
+- npm run code-check
+- npm run test
+- npm run build
+deploy:
+  provider: npm
+  email: TrdelnikSquad@cimpress.com
+  skip_cleanup: true
+  api_key:
+    secure: XDl5ZwCycA02PGCAYe2J0/RWwoq4bSIPzL1mgv+C3gBhrVWbsnnR3iqy5RvKYWSxQs3BQgwBd5H2zIOTk+gO++BRBPv3rjQipm5yzBp1dXDLSAWerxsCM7gTFrg+6eCiK4/bpS/cfZcd2aY8GUJinQ5vBLKoiO7WRz1Z04st+eh+fEQ6U16g0JIBQmE8HLlNmh5+HdN6cY3gR7rTXs6Fl20ls83tYXiUUpAcLp0kvO27uRCQ/ztwEd2yzg0oofGsmk02Ud6iIa6W7UrdM2haO3lnfVK3FZegDshHF0SR+sriV+yEWqswsrYzZyHUTAmXj3tWTuxba1DJM4Gaej9tHgGENlZU7eVF5x7j5gz+KWDyM7l57kmONW5DGuxYcbFVsjO1tckKM8ocRoGPaZD9RdXFHRFNhQ4iFTCCRfyQGpnsdHX29BwEWMbJ/ovq+olYJUHNjQGodMbBcgBzhGPr03tU01ZeLlwXe9ca0sdcr7ILSyswd50+5rzeUJTACfATx0dZ64RhCbgtPmzZfkv4oFrRve216cBo+INAsTFuxIYyeVr8Nan99A27j81LmPvPqL4egbJ8UDQyL0iWHenvVUn6lTaLOC31cNXju2HQNcVy+1QPmrnRgC6E4j5w0RS8Usf89TDyUXdRIp09oLp38JbbgZy8+FSg4fIsRm3OIwE=
+  on:
+    branch: master
+    repo: Cimpress-MCP/edie-processors
