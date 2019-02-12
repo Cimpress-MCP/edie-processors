@@ -17,17 +17,17 @@ const EDIE_BLOCK_TYPE = {
 
 const blockToMjml = (item, childrenRenderer) => {
     switch (item.type) {
-    case blockTypes.MAIN:
+    case EDIE_BLOCK_TYPE.MAIN:
         return mainToMjml(item, childrenRenderer);
-    case blockTypes.TEXT:
+    case EDIE_BLOCK_TYPE.TEXT:
         return textToMjml(item);
-    case blockTypes.ROW:
+    case EDIE_BLOCK_TYPE.ROW:
         return rowToMjml(item, childrenRenderer);
-    case blockTypes.COLUMN:
+    case EDIE_BLOCK_TYPE.COLUMN:
         return columnToMjml(item, childrenRenderer);
-    case blockTypes.BUTTON:
+    case EDIE_BLOCK_TYPE.BUTTON:
         return buttonToMjml(item);
-    case blockTypes.LOOP:
+    case EDIE_BLOCK_TYPE.LOOP:
         return loopToMjml(item, childrenRenderer);
     default:
         return `Conversion of ${item.type} to MJML not implemented.`;
@@ -52,7 +52,7 @@ function edie2hbsmjml(edieJson) {
 
 const createEmptyFormat = (v) => {
     if (v && v !== 'v1.0') {
-        return null
+        return null;
     }
 
     return {
@@ -67,7 +67,7 @@ const createEmptyFormat = (v) => {
             children: [],
         },
     };
-}
+};
 
 
 function createEmptyBlock(type) {
