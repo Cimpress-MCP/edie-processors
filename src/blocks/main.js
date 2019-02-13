@@ -32,5 +32,5 @@ const mainTotext = (item, childrenRenderer) => {
 
 export {
     mainToMjml,
-    mainTotext
+    mainTotext,
 };

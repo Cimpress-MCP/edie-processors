@@ -30,5 +30,5 @@ const rowToText = (item, childrenRenderer) => {
 
 export {
     rowToMjml,
-    rowToText
+    rowToText,
 };
