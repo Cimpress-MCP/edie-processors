@@ -1,16 +1,15 @@
-import { edie2hbsmjml, createEmptyBlock } from '../src';
-import assert from 'assert'
+import {edie2hbsmjml, edie2hbstext, createEmptyBlock} from '../src';
+import assert from 'assert';
 
-describe('createEmptyBlock', function () {
-    it('returns empty block ', function () {
+describe('createEmptyBlock', function() {
+    it('returns empty block ', function() {
         const block = createEmptyBlock();
         assert.ok(block.id);
-    })
-})
+    });
+});
 
-
-describe('One test', function () {
-    it('which is not a test', function () {
+describe('One test', function() {
+    it('which is not a test', function() {
         let sample = {
             'formatVersion': 'v1.0',
             'mimeHeaders': {
@@ -577,5 +576,6 @@ describe('One test', function () {
         };
 
         console.log(edie2hbsmjml(sample));
+        console.log(edie2hbstext(sample));
     });
 });

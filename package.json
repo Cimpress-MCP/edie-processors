@@ -1,6 +1,6 @@
 {
   "name": "edie-processors",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A set of helper methods",
   "main": "./lib/index.js",
   "files": [
@@ -23,8 +23,7 @@
   },
   "homepage": "https://github.com/Cimpress/edie-processors#readme",
   "keywords": [
-    "cimpress",
-    "coam"
+    "edie"
   ],
   "devDependencies": {
     "@babel/cli": "7.0.0",
@@ -44,6 +43,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",
+    "html-to-text": "^4.0.0",
     "jsdom": "^13.2.0",
     "uuid": "^3.3.2"
   }

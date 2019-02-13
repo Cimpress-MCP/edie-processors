@@ -1,6 +1,6 @@
 import {propertiesToText, translateProps} from './common/base';
 
-function buttonToMjml(item) {
+const buttonToMjml = (item) => {
     let keyTranslations = {
         'backgroundColor': 'background-color',
         'textAlign': 'text-align',
@@ -11,8 +11,17 @@ function buttonToMjml(item) {
 
     let properties = propertiesToText(mjmlProperties, ['content', 'borderSize', 'borderColor']);
     return `<mj-button ${properties}>${item.properties.content}</mj-button>`;
-}
+};
+
+const buttonToText = (item) => {
+    let result = item.properties.content + '\r\n';
+    if (item.properties.href) {
+        result += `[${item.properties.href}]\r\n`;
+    }
+    return result;
+};
 
 export {
     buttonToMjml,
+    buttonToText,
 };
