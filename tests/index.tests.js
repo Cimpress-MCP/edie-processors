@@ -1,7 +1,16 @@
-import {edie2hbsmjml} from '../src';
+import { edie2hbsmjml, createEmptyBlock } from '../src';
+import assert from 'assert'
 
-describe('One test', function() {
-    it('which is not a test', function() {
+describe('createEmptyBlock', function () {
+    it('returns empty block ', function () {
+        const block = createEmptyBlock();
+        assert.ok(block.id);
+    })
+})
+
+
+describe('One test', function () {
+    it('which is not a test', function () {
         let sample = {
             'formatVersion': 'v1.0',
             'mimeHeaders': {
