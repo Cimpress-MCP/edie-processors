@@ -1,4 +1,4 @@
-import * as uuidv1 from 'uuid/v1';
+import uuidv1 from 'uuid/v1';
 import {EDIE_BLOCK_TYPE} from './blocks/common/base';
 import {mainToMjml, mainTotext} from './blocks/main';
 import {textToMjml, textToText} from './blocks/text';
