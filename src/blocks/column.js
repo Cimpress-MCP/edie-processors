@@ -1,6 +1,6 @@
 import {propertiesToText, translateProps} from './common/base';
 
-function columnToMjml(item, childrenRenderer) {
+const columnToMjml = (item, childrenRenderer) => {
     let keyTranslations = {
         'backgroundColor': 'background-color',
     };
@@ -19,9 +19,17 @@ function columnToMjml(item, childrenRenderer) {
         items += childrenRenderer(x, childrenRenderer);
     });
     return `<mj-column ${properties}>${items}</mj-column>`;
-}
+};
 
+const columnToText = (item, childrenRenderer) => {
+    let result = '';
+    (item.children || []).forEach((x) => {
+        result += childrenRenderer(x, childrenRenderer);
+    });
+    return result + '\r\n';
+};
 
 export {
     columnToMjml,
+    columnToText,
 };

@@ -1,4 +1,4 @@
-import {edie2hbsmjml} from '../src';
+import {edie2hbsmjml, edie2hbstext} from '../src';
 
 describe('One test', function() {
     it('which is not a test', function() {
@@ -568,5 +568,6 @@ describe('One test', function() {
         };
 
         console.log(edie2hbsmjml(sample));
+        console.log(edie2hbstext(sample));
     });
 });

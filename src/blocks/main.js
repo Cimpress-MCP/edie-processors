@@ -2,7 +2,7 @@ import {propertiesToText, translateProps, EDIE_BLOCK_TYPE} from './common/base';
 import {textToMjml} from './text';
 import {loopToMjml} from './loop';
 
-function mainToMjml(item, childrenRenderer) {
+const mainToMjml = (item, childrenRenderer) => {
     let keyTranslations = {
         'backgroundColor': 'background-color',
         'emailWidth': 'width',
@@ -20,8 +20,17 @@ function mainToMjml(item, childrenRenderer) {
         }
     });
     return `<mj-body ${properties}>${items}</mj-body>`;
-}
+};
+
+const mainTotext = (item, childrenRenderer) => {
+    let items = '';
+    (item.children || []).forEach((x) => {
+        items += childrenRenderer(x, childrenRenderer);
+    });
+    return items + '\r\n';
+};
 
 export {
     mainToMjml,
+    mainTotext
 };

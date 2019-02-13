@@ -20,6 +20,15 @@ function rowToMjml(item, childrenRenderer) {
 `;
 }
 
+const rowToText = (item, childrenRenderer) => {
+    let result = '';
+    (item.children || []).forEach((x) => {
+        result += childrenRenderer(x, childrenRenderer);
+    });
+    return result + '\r\n';
+};
+
 export {
     rowToMjml,
+    rowToText
 };

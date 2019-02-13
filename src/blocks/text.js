@@ -1,13 +1,14 @@
 import {JSDOM} from 'jsdom';
+import htmlToText from 'html-to-text';
+
 import {translateProps, propertiesToText} from './common/base';
 
 const dom = new JSDOM();
 
-function textToMjml(item, encloseInSection) {
-    // Special handler for placeholders
-    const frag = JSDOM.fragment(item.properties.content);
+const convertPlaceholders = (html) => {
+    const frag = JSDOM.fragment(html);
     let placeholders = frag.querySelectorAll('span[type="placeholder"]');
-    let content = item.properties.content;
+    let content = html;
     if (placeholders.length > 0 ) {
         placeholders.forEach((ph) => {
             let code = ph.getAttribute('content');
@@ -19,6 +20,12 @@ function textToMjml(item, encloseInSection) {
         x.appendChild(frag);
         content = x.innerHTML;
     }
+    return content;
+};
+
+const textToMjml = (item, encloseInSection) => {
+    // Special handler for placeholders
+    let content = convertPlaceholders(item.properties.content);
 
     let mjmlProperties = translateProps(
         item.properties, {
@@ -36,8 +43,25 @@ function textToMjml(item, encloseInSection) {
     return encloseInSection
         ? `<mj-section><mj-column>${mjText}</mj-column></mj-section>`
         : mjText;
-}
+};
+
+const textToText = (item) => {
+    // Special handler for placeholders
+    let content = convertPlaceholders(item.properties.content);
+
+    return htmlToText.fromString(content, {
+        wordwrap: 130,
+        ignoreImage: true,
+        preserveNewlines: true,
+        format: {
+            text: function(elem) {
+                return elem.data + ' ';
+            },
+        },
+    }).trim() + '\r\n';
+};
 
 export {
     textToMjml,
+    textToText,
 };

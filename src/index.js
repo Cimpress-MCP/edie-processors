@@ -1,11 +1,11 @@
 import * as uuidv1 from 'uuid/v1';
 import {EDIE_BLOCK_TYPE} from './blocks/common/base';
-import {mainToMjml} from './blocks/main';
-import {textToMjml} from './blocks/text';
-import {rowToMjml} from './blocks/row';
-import {columnToMjml} from './blocks/column';
-import {buttonToMjml} from './blocks/button';
-import {loopToMjml} from './blocks/loop';
+import {mainToMjml, mainTotext} from './blocks/main';
+import {textToMjml, textToText} from './blocks/text';
+import {rowToMjml, rowToText} from './blocks/row';
+import {columnToMjml, columnToText} from './blocks/column';
+import {buttonToMjml, buttonToText} from './blocks/button';
+import {loopToMjml, loopToText} from './blocks/loop';
 
 const blockToMjml = (item, childrenRenderer) => {
     switch (item.type) {
@@ -26,6 +26,25 @@ const blockToMjml = (item, childrenRenderer) => {
     }
 };
 
+const blockToText = (item, childrenRenderer) => {
+    switch (item.type) {
+    case EDIE_BLOCK_TYPE.MAIN:
+        return mainTotext(item, childrenRenderer);
+    case EDIE_BLOCK_TYPE.TEXT:
+        return textToText(item);
+    case EDIE_BLOCK_TYPE.ROW:
+        return rowToText(item, childrenRenderer);
+    case EDIE_BLOCK_TYPE.COLUMN:
+        return columnToText(item, childrenRenderer);
+    case EDIE_BLOCK_TYPE.BUTTON:
+        return buttonToText(item);
+    case EDIE_BLOCK_TYPE.LOOP:
+        return loopToText(item, childrenRenderer);
+    default:
+        return `Conversion of ${item.type} to TEXT not implemented.`;
+    }
+};
+
 function exportMimeHeadersToMjml(headers) {
     let result = '';
     Object.keys(headers).forEach((k) => {
@@ -40,6 +59,14 @@ function edie2hbsmjml(edieJson) {
     }
 
     return `<mjml><mj-head>${exportMimeHeadersToMjml(edieJson.mimeHeaders)}</mj-head>${blockToMjml(edieJson.structure, blockToMjml)}</mjml>`;
+}
+
+function edie2hbstext(edieJson) {
+    if (edieJson.formatVersion !== 'v1.0') {
+        return 'Not supported version!';
+    }
+
+    return blockToText(edieJson.structure, blockToText);
 }
 
 const createEmptyFormat = (v) => {
@@ -96,6 +123,7 @@ function createEmptyBlock(type) {
 export {
     EDIE_BLOCK_TYPE,
     edie2hbsmjml,
+    edie2hbstext,
     createEmptyBlock,
     createEmptyFormat,
 };
