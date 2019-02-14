@@ -5,6 +5,7 @@ const EDIE_BLOCK_TYPE = {
     TEXT: 'text',
     BUTTON: 'button',
     LOOP: 'loop',
+    VSPACER: 'vspacer',
 };
 
 function translateProps(props, translations) {

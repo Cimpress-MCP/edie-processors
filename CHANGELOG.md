@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fix
 - Fix import of uuidv1
 - Add edie2hbstext converter
+- Added VSPACER element
 
 ## [0.0.1] - 2019.02.06
 ### Added

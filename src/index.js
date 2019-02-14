@@ -6,6 +6,7 @@ import {rowToMjml, rowToText} from './blocks/row';
 import {columnToMjml, columnToText} from './blocks/column';
 import {buttonToMjml, buttonToText} from './blocks/button';
 import {loopToMjml, loopToText} from './blocks/loop';
+import {vspacerToMjml, vspacerToText} from './blocks/vspacer';
 
 const blockToMjml = (item, childrenRenderer) => {
     switch (item.type) {
@@ -21,6 +22,8 @@ const blockToMjml = (item, childrenRenderer) => {
         return buttonToMjml(item);
     case EDIE_BLOCK_TYPE.LOOP:
         return loopToMjml(item, childrenRenderer);
+    case EDIE_BLOCK_TYPE.VSPACER:
+        return vspacerToMjml(item);
     default:
         return `Conversion of ${item.type} to MJML not implemented.`;
     }
@@ -40,6 +43,8 @@ const blockToText = (item, childrenRenderer) => {
         return buttonToText(item);
     case EDIE_BLOCK_TYPE.LOOP:
         return loopToText(item, childrenRenderer);
+    case EDIE_BLOCK_TYPE.VSPACER:
+        return vspacerToText(item);
     default:
         return `Conversion of ${item.type} to TEXT not implemented.`;
     }
