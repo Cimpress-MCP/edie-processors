@@ -23,9 +23,10 @@ const loopToText = (item, childrenRenderer, isAtMainLevel ) => {
         items += childrenRenderer(x, childrenRenderer);
     });
 
-    return '{{#' + item.properties.loopPath + '}}'
+    return '{{#' + item.properties.loopPath + '}}\r\n'
         + items
-        + '{{/' + item.properties.loopPath + '}}';
+        + '{{/' + item.properties.loopPath + '}}\r\n'
+        + '\r\n';
 };
 
 export {
