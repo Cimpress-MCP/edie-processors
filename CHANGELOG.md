@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fix import of uuidv1
 - Add edie2hbstext converter
 - Added VSPACER element
+- Add enclosing section/column with 0 padding for TEXT and VSPACER elements when presented in mj-body.
+- Add default properties for VSPACER
 
 ## [0.0.1] - 2019.02.06
 ### Added

@@ -1,11 +1,14 @@
 import {EDIE_BLOCK_TYPE} from './common/base';
 import {textToMjml} from './text';
+import {vspacerToMjml} from './vspacer';
 
 const loopToMjml = (item, childrenRenderer, isAtMainLevel ) => {
     let items = '';
     (item.children || []).forEach((x) => {
         if (isAtMainLevel && x.type === EDIE_BLOCK_TYPE.TEXT) {
             items += textToMjml(x, true);
+        } else if (isAtMainLevel && x.type === EDIE_BLOCK_TYPE.VSPACER) {
+            items += vspacerToMjml(x, true);
         } else {
             items += childrenRenderer(x, childrenRenderer);
         }

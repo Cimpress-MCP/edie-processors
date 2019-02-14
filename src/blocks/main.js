@@ -1,6 +1,7 @@
 import {propertiesToText, translateProps, EDIE_BLOCK_TYPE} from './common/base';
 import {textToMjml} from './text';
 import {loopToMjml} from './loop';
+import {vspacerToMjml} from './vspacer';
 
 const mainToMjml = (item, childrenRenderer) => {
     let keyTranslations = {
@@ -13,6 +14,8 @@ const mainToMjml = (item, childrenRenderer) => {
     (item.children || []).forEach((x) => {
         if (x.type === EDIE_BLOCK_TYPE.TEXT) {
             items += textToMjml(x, childrenRenderer, true);
+        } else if (x.type === EDIE_BLOCK_TYPE.VSPACER) {
+            items += vspacerToMjml(x, true);
         } else if (x.type === EDIE_BLOCK_TYPE.LOOP) {
             items += loopToMjml(x, childrenRenderer, true);
         } else {
