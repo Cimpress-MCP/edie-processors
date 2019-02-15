@@ -50,20 +50,22 @@ const blockToText = (item, childrenRenderer) => {
     }
 };
 
-function exportMimeHeadersToMjml(headers) {
-    let result = '';
-    Object.keys(headers).forEach((k) => {
-        result += `<mj-raw><meta name="mime-header-${k}" content="${headers[k]}" /></mj-raw>\r\n`;
-    });
-    return result;
-}
-
 function edie2hbsmjml(edieJson) {
     if (edieJson.formatVersion !== 'v1.0') {
         return 'Not supported version!';
     }
 
-    return `<mjml><mj-head>${exportMimeHeadersToMjml(edieJson.mimeHeaders)}</mj-head>${blockToMjml(edieJson.structure, blockToMjml)}</mjml>`;
+    return `<mjml>
+<mj-head>
+    <mj-style inline="inline">
+      .text-tiny { font-size: .7em; } 
+      .text-small { font-size: .85em; } 
+      .text-big { font-size: 1.4em; } 
+      .text-huge { font-size: 1.8em; }
+    </mj-style>
+</mj-head>
+${blockToMjml(edieJson.structure, blockToMjml)}
+</mjml>`;
 }
 
 function edie2hbstext(edieJson) {
@@ -107,9 +109,22 @@ function createEmptyBlock(type) {
         };
         break;
 
+    case EDIE_BLOCK_TYPE.TEXT:
+        props = {
+            padding: '0px',
+        };
+        break;
+
+    case EDIE_BLOCK_TYPE.ROW:
+        props = {
+            padding: '0px',
+        };
+        break;
+
     case EDIE_BLOCK_TYPE.COLUMN:
         props = {
             width: '100%',
+            padding: '0px',
         };
         break;
 

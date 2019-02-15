@@ -12,14 +12,19 @@ const mainToMjml = (item, childrenRenderer) => {
     let properties = propertiesToText(translateProps(item.properties, keyTranslations), ['emailBackgroundColor', 'isPublic']);
     let items = '';
     (item.children || []).forEach((x) => {
-        if (x.type === EDIE_BLOCK_TYPE.TEXT) {
+        switch (x.type) {
+        case EDIE_BLOCK_TYPE.TEXT:
             items += textToMjml(x, childrenRenderer, true);
-        } else if (x.type === EDIE_BLOCK_TYPE.VSPACER) {
+            break;
+        case EDIE_BLOCK_TYPE.VSPACER:
             items += vspacerToMjml(x, true);
-        } else if (x.type === EDIE_BLOCK_TYPE.LOOP) {
+            break;
+        case EDIE_BLOCK_TYPE.LOOP:
             items += loopToMjml(x, childrenRenderer, true);
-        } else {
+            break;
+        default:
             items += childrenRenderer(x, childrenRenderer);
+            break;
         }
     });
     return `<mj-body ${properties}>${items}</mj-body>`;

@@ -5,10 +5,18 @@ import {vspacerToMjml} from './vspacer';
 const loopToMjml = (item, childrenRenderer, isAtMainLevel ) => {
     let items = '';
     (item.children || []).forEach((x) => {
-        if (isAtMainLevel && x.type === EDIE_BLOCK_TYPE.TEXT) {
-            items += textToMjml(x, true);
-        } else if (isAtMainLevel && x.type === EDIE_BLOCK_TYPE.VSPACER) {
-            items += vspacerToMjml(x, true);
+        if (isAtMainLevel) {
+            switch (x.type) {
+            case EDIE_BLOCK_TYPE.TEXT:
+                items += textToMjml(x, true);
+                break;
+            case EDIE_BLOCK_TYPE.VSPACER:
+                items += vspacerToMjml(x, true);
+                break;
+            default:
+                items += childrenRenderer(x, childrenRenderer);
+                break;
+            }
         } else {
             items += childrenRenderer(x, childrenRenderer);
         }

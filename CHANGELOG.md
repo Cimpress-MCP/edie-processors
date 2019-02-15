@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added VSPACER element
 - Add enclosing section/column with 0 padding for TEXT and VSPACER elements when presented in mj-body.
 - Add default properties for VSPACER
+- Added styles corresponding to different font sizes (text-{tiny/small/big/large})
+- Added more default properties when using the createEmptyBlock() helper
 
 ## [0.0.1] - 2019.02.06
 ### Added

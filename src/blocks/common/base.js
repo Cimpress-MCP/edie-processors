@@ -8,19 +8,20 @@ const EDIE_BLOCK_TYPE = {
     VSPACER: 'vspacer',
 };
 
-function translateProps(props, translations) {
+const translateProps = (props, translations) => {
     let translated = {};
-    Object.keys(props).forEach((key) => {
-        if (translations[key]) {
-            translated[translations[key]] = props[key];
-        } else {
-            translated[key] = props[key];
-        }
-    });
+    Object.keys(props)
+        .forEach((key) => {
+            if (translations[key]) {
+                translated[translations[key]] = props[key];
+            } else {
+                translated[key] = props[key];
+            }
+        });
     return translated;
-}
+};
 
-function propertiesToText(props, keysToIgnore) {
+const propertiesToText = (props, keysToIgnore) => {
     let properties = '';
     Object.keys(props || {})
         .filter((key) => !(keysToIgnore || []).includes(key))
@@ -29,8 +30,7 @@ function propertiesToText(props, keysToIgnore) {
             properties = properties + ' ' + key + '="' + props[key] + '"';
         });
     return properties;
-}
-
+};
 
 export {
     EDIE_BLOCK_TYPE,

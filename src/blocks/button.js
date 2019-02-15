@@ -7,9 +7,12 @@ const buttonToMjml = (item) => {
     };
 
     let mjmlProperties = translateProps(item.properties, keyTranslations);
-    mjmlProperties['border'] = mjmlProperties['borderSize'] + ' solid ' + mjmlProperties['borderColor'];
+    if (mjmlProperties['borderSize'] && mjmlProperties['borderColor']) {
+        mjmlProperties['border'] = mjmlProperties['borderSize'] + ' solid ' + mjmlProperties['borderColor'];
+    }
 
     let properties = propertiesToText(mjmlProperties, ['content', 'borderSize', 'borderColor']);
+
     return `<mj-button ${properties}>${item.properties.content}</mj-button>`;
 };
 
