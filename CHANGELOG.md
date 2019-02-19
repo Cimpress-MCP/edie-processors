@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+
+## [0.0.8] - 2019.02.19
+### Added
+- Support for ck editor images https://github.com/ckeditor/ckeditor5-image/blob/master/theme/imagestyle.css
+
 ## [0.0.x] - 2019.02.13
 ### Fix
 - Fix import of uuidv1
