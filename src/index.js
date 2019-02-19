@@ -62,11 +62,11 @@ function edie2hbsmjml(edieJson) {
       .text-small { font-size: .85em; } 
       .text-big { font-size: 1.4em; } 
       .text-huge { font-size: 1.8em; }
-      figure.image img{ width: 100%; }
+      figure.image img{ width: 100%; margin: 1em 0em 1em 0em;}
       figure.image.image-style-align-left { margin-left: 0px; }
-      figure.image.image-style-align-left img { max-width: 50%; float: left; margin: 1em 1.5em 1em 0em; }
+      figure.image.image-style-align-left img { max-width: 50%; float: left; margin-right: 1.5em; }
       figure.image.image-style-align-right { margin-right: 0px; }
-      figure.image.image-style-align-right img { max-width: 50%; float: right; margin: 1em 0em 1em 1.5em; }
+      figure.image.image-style-align-right img { max-width: 50%; float: right; margin-left: 1.5em; }
     </mj-style>
 </mj-head>
 ${blockToMjml(edieJson.structure, blockToMjml)}
