@@ -50,9 +50,16 @@ const convertPlaceholders = (html) => {
     return content;
 };
 
+const convertMarkElementsToSpan = (html) => {
+    let r = html.replace(/<mark /g, '<span ');
+    r = r.replace(/<\/mark>/g, '</span>');
+    return r;
+};
+
 const textToMjml = (item, encloseInSection) => {
     // Special handler for placeholders
     let content = convertPlaceholders(item.properties.content);
+    content = convertMarkElementsToSpan(content);
 
     let mjmlProperties = translateProps(
         item.properties, {
