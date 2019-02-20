@@ -5,13 +5,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [0.0.10] - 2019.02.21
+### Added
+- Inline classes for text colors (fore- and back-) matching edie-color-p-XXXXXX and edie-color-m-XXXXXX 
+
 ## [0.0.9] - 2019.02.19
 ### Added
 - Remove image figure margins
 
 ## [0.0.8] - 2019.02.19
 ### Added
-- Support for ck editor images https://github.com/ckeditor/ckeditor5-image/blob/master/theme/imagestyle.css
+- Support image classes
 
 ## [0.0.x] - 2019.02.13
 ### Fix
