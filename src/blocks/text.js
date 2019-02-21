@@ -5,6 +5,33 @@ import {translateProps, propertiesToText} from './common/base';
 
 const dom = new JSDOM();
 
+const extractColorClasses = (html) => {
+    let penClasses = {};
+    let penClassesRegex = /edie-color-p-([a-zA-Z0-9]{6})/g;
+    let penMatches;
+    do {
+        penMatches = penClassesRegex.exec(html);
+        if (penMatches) {
+            penClasses[penMatches[0]] = penMatches[1]; // x[className]=color
+        }
+    } while (penMatches);
+
+    let markerClasses = {};
+    let markerClassesRegex = /edie-color-m-([a-zA-Z0-9]{6})/g;
+    let markerMatches;
+    do {
+        markerMatches = markerClassesRegex.exec(html);
+        if (markerMatches) {
+            markerClasses[markerMatches[0]] = markerMatches[1];
+        }
+    } while (markerMatches);
+
+    return {
+        pen: penClasses,
+        marker: markerClasses,
+    };
+};
+
 const convertPlaceholders = (html) => {
     const frag = JSDOM.fragment(html);
     let placeholders = frag.querySelectorAll('span[type="placeholder"]');
@@ -23,9 +50,16 @@ const convertPlaceholders = (html) => {
     return content;
 };
 
+const convertMarkElementsToSpan = (html) => {
+    let r = html.replace(/<mark /g, '<span ');
+    r = r.replace(/<\/mark>/g, '</span>');
+    return r;
+};
+
 const textToMjml = (item, encloseInSection) => {
     // Special handler for placeholders
     let content = convertPlaceholders(item.properties.content);
+    content = convertMarkElementsToSpan(content);
 
     let mjmlProperties = translateProps(
         item.properties, {
@@ -65,4 +99,5 @@ const textToText = (item) => {
 export {
     textToMjml,
     textToText,
+    extractColorClasses,
 };

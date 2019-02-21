@@ -1,7 +1,7 @@
 import uuidv1 from 'uuid/v1';
 import {EDIE_BLOCK_TYPE} from './blocks/common/base';
 import {mainToMjml, mainTotext} from './blocks/main';
-import {textToMjml, textToText} from './blocks/text';
+import {extractColorClasses, textToMjml, textToText} from './blocks/text';
 import {rowToMjml, rowToText} from './blocks/row';
 import {columnToMjml, columnToText} from './blocks/column';
 import {buttonToMjml, buttonToText} from './blocks/button';
@@ -55,6 +55,16 @@ function edie2hbsmjml(edieJson) {
         return 'Not supported version!';
     }
 
+    let mjml = blockToMjml(edieJson.structure, blockToMjml);
+    let colorClasses = extractColorClasses(mjml);
+    let styles = '';
+    Object.keys(colorClasses.pen).forEach((penClass) => {
+        styles += `      .${penClass} { color: #${colorClasses.pen[penClass]} }\r\n`;
+    });
+    Object.keys(colorClasses.marker).forEach((markerClass) => {
+        styles += `      .${markerClass} { background-color: #${colorClasses.marker[markerClass]} }\r\n`;
+    });
+
     return `<mjml>
 <mj-head>
     <mj-style inline="inline">
@@ -68,9 +78,10 @@ function edie2hbsmjml(edieJson) {
       figure.image.image-style-align-left img { max-width: 50%; float: left; margin-right: 1.5em; }
       figure.image.image-style-align-right { margin-right: 0px; }
       figure.image.image-style-align-right img { max-width: 50%; float: right; margin-left: 1.5em; }
+      ${styles}
     </mj-style>
 </mj-head>
-${blockToMjml(edieJson.structure, blockToMjml)}
+${mjml}
 </mjml>`;
 }
 
