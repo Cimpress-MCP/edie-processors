@@ -134,20 +134,17 @@ function createEmptyBlock(type) {
 
     case EDIE_BLOCK_TYPE.TEXT:
         props = {
-            padding: '0px',
         };
         break;
 
     case EDIE_BLOCK_TYPE.ROW:
         props = {
-            padding: '0px',
         };
         break;
 
     case EDIE_BLOCK_TYPE.COLUMN:
         props = {
             width: '100%',
-            padding: '0px',
         };
         break;
 
