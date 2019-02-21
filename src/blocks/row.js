@@ -6,10 +6,6 @@ function rowToMjml(item, childrenRenderer) {
     };
 
     let mjmlProperties = translateProps(item.properties, keyTranslations);
-    mjmlProperties['full-width'] = 'full-width';
-    if (!mjmlProperties['padding']) {
-        mjmlProperties['padding'] = '0px';
-    }
 
     let properties = propertiesToText(mjmlProperties);
     let items = '';

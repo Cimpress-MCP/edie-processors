@@ -6,9 +6,6 @@ const columnToMjml = (item, childrenRenderer) => {
     };
 
     let mjmlProperties = translateProps(item.properties, keyTranslations);
-    if (!mjmlProperties['padding']) {
-        mjmlProperties['padding'] = '0px';
-    }
     if (mjmlProperties['borderSize'] && mjmlProperties['borderColor']) {
         mjmlProperties['border'] = mjmlProperties['borderSize'] + ' solid ' + mjmlProperties['borderColor'];
     }

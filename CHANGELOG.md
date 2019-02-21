@@ -5,6 +5,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [0.0.11] - 2019.02.21
+### Fixed/Changed
+- Put back 'email background color' property at main element
+- Use mj-attributes for default mj-section color (same as main background color)
+- Use mj-attirbutes for default mj-section padding of 5px
+- Use mj-attirbutes for default mj-text padding of 5px
+- Removed hardcoded padding of 0px from row, column, vspacer and text
+- Do not put properties with falsy value as attributes of mj elements
+- In case mj-text is enclosed with mj-section, apply the mj-text's background color to the section
+- Automatically add an empty top section with 2px padding and 'email background color'
+- Automatically add an empty bottom section with 2px padding and 'email background color'
+
 ## [0.0.10] - 2019.02.21
 ### Added
 - Inline classes for text colors (fore- and back-) matching edie-color-p-XXXXXX and edie-color-m-XXXXXX 

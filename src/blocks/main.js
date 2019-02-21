@@ -5,11 +5,11 @@ import {vspacerToMjml} from './vspacer';
 
 const mainToMjml = (item, childrenRenderer) => {
     let keyTranslations = {
-        'backgroundColor': 'background-color',
+        'emailBackgroundColor': 'background-color',
         'emailWidth': 'width',
     };
 
-    let properties = propertiesToText(translateProps(item.properties, keyTranslations), ['emailBackgroundColor', 'isPublic']);
+    let properties = propertiesToText(translateProps(item.properties, keyTranslations), ['backgroundColor', 'isPublic']);
     let items = '';
     (item.children || []).forEach((x) => {
         switch (x.type) {
@@ -27,7 +27,11 @@ const mainToMjml = (item, childrenRenderer) => {
             break;
         }
     });
-    return `<mj-body ${properties}>${items}</mj-body>`;
+    return `<mj-body ${properties}>
+<mj-section background-color="${item.properties['emailBackgroundColor']}"><mj-column><mj-text padding="2px"></mj-text></mj-column></mj-section>
+${items}
+<mj-section background-color="${item.properties['emailBackgroundColor']}"><mj-column><mj-text padding="2px"></mj-text></mj-column></mj-section>
+</mj-body>`;
 };
 
 const mainTotext = (item, childrenRenderer) => {

@@ -66,17 +66,13 @@ const textToMjml = (item, encloseInSection) => {
             backgroundColor: 'container-background-color',
         });
 
-    if (!mjmlProperties['padding']) {
-        mjmlProperties['padding'] = '0px';
-    }
-
     let properties = propertiesToText(mjmlProperties, ['content']);
 
     let mjText = `<mj-text ${properties}>${content}</mj-text>`;
 
     // mj-text NOT allowed in mj-body
     return encloseInSection
-        ? `<mj-section padding="0px"><mj-column padding="0px">${mjText}</mj-column></mj-section>`
+        ? `<mj-section ${propertiesToText({'background-color': item.properties.backgroundColor})}><mj-column>${mjText}</mj-column></mj-section>`
         : mjText;
 };
 

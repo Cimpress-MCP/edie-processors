@@ -13,7 +13,7 @@ const vspacerToMjml = (item, encloseInSection) => {
 
     // mj-spacer NOT allowed in mj-body
     return encloseInSection
-        ? `<mj-section padding="0px"><mj-column padding="0px">${mjSpacer}</mj-column></mj-section>`
+        ? `<mj-section ><mj-column >${mjSpacer}</mj-column></mj-section>`
         : mjSpacer;
 };
 
