@@ -9,8 +9,8 @@ const imageToMjml = (item) => {
 
 const imageToText = (item) => {
     const alt = item.properties.alt || 'image';
-    const href = item.properties.href ? `(${item.properties.href})` : '';
-    return `[${alt}]${href}`;
+    const href = item.properties.href || '';
+    return `![${alt}](${href})`;
 };
 
 export {

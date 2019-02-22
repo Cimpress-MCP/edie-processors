@@ -3,24 +3,36 @@ import { expect } from 'chai';
 
 describe('image', function () {
     describe('imageToText', function () {
-        it('no alt returns [image]', function () {
+        it('no alt no href returns ![image]()', function () {
             const imageItem = {
                 properties: {}
             }
             const text = imageToText(imageItem)
-            expect(text).to.equal('[image]');
+            expect(text).to.equal('![image]()');
         });
 
-        it('alt but no href returns [{alt}]', function () {
+        it('alt but no href returns ![{alt}]()', function () {
             const imageItem = {
                 properties: {
                     alt: 'horse_image'
                 }
             }
             const text = imageToText(imageItem)
-            expect(text).to.equal('[horse_image]');
+            expect(text).to.equal('![horse_image]()');
         });
-        it('alt returns [{alt}]({href})', function () {
+
+
+        it('no alt but href returns ![image]({href})', function () {
+            const imageItem = {
+                properties: {
+                    href: 'horse_image_url'
+                }
+            }
+            const text = imageToText(imageItem)
+            expect(text).to.equal('![image](horse_image_url)');
+        });
+
+        it('alt and href returns ![{alt}]({href})', function () {
             const imageItem = {
                 properties: {
                     alt: 'image of a horse',
@@ -28,7 +40,7 @@ describe('image', function () {
                 }
             }
             const text = imageToText(imageItem)
-            expect(text).to.equal('[image of a horse](route_to_horse)');
+            expect(text).to.equal('![image of a horse](route_to_horse)');
         });
     });
 
