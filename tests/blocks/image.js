@@ -3,36 +3,36 @@ import { expect } from 'chai';
 
 describe('image', function () {
     describe('imageToText', function () {
-        it('no alt no href returns ![image]()', function () {
+        it('no alt no href returns Image\r\n[]\r\n', function () {
             const imageItem = {
                 properties: {}
             }
             const text = imageToText(imageItem)
-            expect(text).to.equal('![image]()');
+            expect(text).to.equal('Image\r\n');
         });
 
-        it('alt but no href returns ![{alt}]()', function () {
+        it('alt but no href returns {alt}\r\n', function () {
             const imageItem = {
                 properties: {
                     alt: 'horse_image'
                 }
             }
             const text = imageToText(imageItem)
-            expect(text).to.equal('![horse_image]()');
+            expect(text).to.equal('horse_image\r\n');
         });
 
 
-        it('no alt but href returns ![image]({href})', function () {
+        it('no alt but href returns Image\r\n{href}\r\n', function () {
             const imageItem = {
                 properties: {
                     href: 'horse_image_url'
                 }
             }
             const text = imageToText(imageItem)
-            expect(text).to.equal('![image](horse_image_url)');
+            expect(text).to.equal('Image\r\n[horse_image_url]\r\n');
         });
 
-        it('alt and href returns ![{alt}]({href})', function () {
+        it('alt and href returns {alt}\r\n{href}\r\n', function () {
             const imageItem = {
                 properties: {
                     alt: 'image of a horse',
@@ -40,7 +40,7 @@ describe('image', function () {
                 }
             }
             const text = imageToText(imageItem)
-            expect(text).to.equal('![image of a horse](route_to_horse)');
+            expect(text).to.equal('image of a horse\r\n[route_to_horse]\r\n');
         });
     });
 
