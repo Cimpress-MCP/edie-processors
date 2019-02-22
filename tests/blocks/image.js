@@ -50,12 +50,14 @@ describe('image', function () {
                 properties: {
                     src: 'url_to_horse_image',
                     alt: 'image of a horse',
-                    href:'route_to_horse',
-                    width: '100%'
+                    href: 'route_to_horse',
+                    width: '100%',
+                    borderSize: '0px',
+                    borderColor: '#4f5d75',
                 }
             }
             const mjml = imageToMjml(imageItem)
-            expect(mjml).to.equal('<mj-image src="url_to_horse_image" alt="image of a horse" href="route_to_horse" width="100%" />');
+            expect(mjml).to.equal('<mj-image src="url_to_horse_image" alt="image of a horse" href="route_to_horse" width="100%" border="0px solid #4f5d75" />');
         });
 
     });
