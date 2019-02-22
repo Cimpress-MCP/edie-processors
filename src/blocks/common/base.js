@@ -27,7 +27,9 @@ const propertiesToText = (props, keysToIgnore) => {
         .filter((key) => !(keysToIgnore || []).includes(key))
         .forEach((key) => {
             // TODO FIX: Make sure props[key] is escaped !!!
-            properties = properties + ' ' + key + '="' + props[key] + '"';
+            if (props[key]) {
+                properties = properties + ' ' + key + '="' + props[key] + '"';
+            }
         });
     return properties;
 };

@@ -55,6 +55,8 @@ function edie2hbsmjml(edieJson) {
         return 'Not supported version!';
     }
 
+    let defaultBackground = edieJson.structure.properties.backgroundColor || '#ffffff';
+
     let mjml = blockToMjml(edieJson.structure, blockToMjml);
     let colorClasses = extractColorClasses(mjml);
     let styles = '';
@@ -80,6 +82,10 @@ function edie2hbsmjml(edieJson) {
       figure.image.image-style-align-right img { max-width: 50%; float: right; margin-left: 1.5em; }
       ${styles}
     </mj-style>
+    <mj-attributes>
+        <mj-section background-color="${defaultBackground}" padding="5px"/>
+        <mj-text padding="5px"/>
+    </mj-attributes>
 </mj-head>
 ${mjml}
 </mjml>`;
@@ -128,20 +134,17 @@ function createEmptyBlock(type) {
 
     case EDIE_BLOCK_TYPE.TEXT:
         props = {
-            padding: '0px',
         };
         break;
 
     case EDIE_BLOCK_TYPE.ROW:
         props = {
-            padding: '0px',
         };
         break;
 
     case EDIE_BLOCK_TYPE.COLUMN:
         props = {
             width: '100%',
-            padding: '0px',
         };
         break;
 
