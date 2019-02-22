@@ -6,7 +6,7 @@ module.exports = {
         "mocha": true
     },
     "parserOptions": {
-        "ecmaVersion": 2017,
+        "ecmaVersion": 9,
         "sourceType": "module",
         "ecmaFeatures": {
             "jsx": true,
