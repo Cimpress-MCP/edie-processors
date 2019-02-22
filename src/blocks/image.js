@@ -1,7 +1,7 @@
-import { propertiesToText } from './common/base';
+import {propertiesToText} from './common/base';
 
 const imageToMjml = (item) => {
-    const mjmlProperties = item.properties
+    const mjmlProperties = item.properties;
     const properties = propertiesToText(mjmlProperties);
 
     return `<mj-image ${properties} />`;

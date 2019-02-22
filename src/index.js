@@ -159,7 +159,7 @@ function createEmptyBlock(type) {
             height: '2px',
         };
         break;
-    case EDIE_BLOCK_TYPE.VSPACER:
+    case EDIE_BLOCK_TYPE.IMAGE:
         props = {
             width: '100%',
             src: '',
