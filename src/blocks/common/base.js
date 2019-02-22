@@ -6,6 +6,7 @@ const EDIE_BLOCK_TYPE = {
     BUTTON: 'button',
     LOOP: 'loop',
     VSPACER: 'vspacer',
+    IMAGE: 'image',
 };
 
 const translateProps = (props, translations) => {
@@ -31,7 +32,7 @@ const propertiesToText = (props, keysToIgnore) => {
                 properties = properties + ' ' + key + '="' + props[key] + '"';
             }
         });
-    return properties;
+    return properties.trim();
 };
 
 export {

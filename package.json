@@ -1,13 +1,13 @@
 {
   "name": "edie-processors",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "A set of helper methods",
   "main": "./lib/index.js",
   "files": [
     "lib"
   ],
   "scripts": {
-    "test": "node ./node_modules/mocha/bin/mocha --require @babel/polyfill --require @babel/register tests/",
+    "test": "node ./node_modules/mocha/bin/mocha --require @babel/polyfill --require @babel/register tests/**",
     "code-check": "eslint --ext .js --ext .jsx src",
     "cover": "node ./node_modules/nyc/bin/nyc.js ./node_modules/mocha/bin/mocha --require @babel/polyfill --require @babel/register tests/",
     "build": "babel src -d lib --copy-files"
