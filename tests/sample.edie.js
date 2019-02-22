@@ -412,7 +412,9 @@ export default {
                                     'src': 'path_to_horse',
                                     'width': '100%',
                                     'alt': 'Image of a horse',
-                                    'href': 'horse_website'
+                                    'href': 'horse_website',
+                                    'borderSize': '0px',
+                                    'borderColor': '#4f5d75',
                                 },
                                 'parentId': '3cf33a00-23fa-11e9-ab78-270edb21e50d',
                             },

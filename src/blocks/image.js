@@ -1,7 +1,10 @@
 import {propertiesToText} from './common/base';
 
 const imageToMjml = (item) => {
-    const mjmlProperties = item.properties;
+    const {borderSize, borderColor, ...mjmlProperties} = item.properties;
+    if (borderSize && borderColor) {
+        mjmlProperties.border = `${borderSize} solid ${borderColor}`;
+    }
     const properties = propertiesToText(mjmlProperties);
 
     return `<mj-image ${properties} />`;
