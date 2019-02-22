@@ -7,6 +7,7 @@ import {columnToMjml, columnToText} from './blocks/column';
 import {buttonToMjml, buttonToText} from './blocks/button';
 import {loopToMjml, loopToText} from './blocks/loop';
 import {vspacerToMjml, vspacerToText} from './blocks/vspacer';
+import {imageToMjml, imageToText} from './blocks/image';
 
 const blockToMjml = (item, childrenRenderer) => {
     switch (item.type) {
@@ -24,6 +25,8 @@ const blockToMjml = (item, childrenRenderer) => {
         return loopToMjml(item, childrenRenderer);
     case EDIE_BLOCK_TYPE.VSPACER:
         return vspacerToMjml(item);
+    case EDIE_BLOCK_TYPE.IMAGE:
+        return imageToMjml(item);
     default:
         return `Conversion of ${item.type} to MJML not implemented.`;
     }
@@ -45,6 +48,8 @@ const blockToText = (item, childrenRenderer) => {
         return loopToText(item, childrenRenderer);
     case EDIE_BLOCK_TYPE.VSPACER:
         return vspacerToText(item);
+    case EDIE_BLOCK_TYPE.IMAGE:
+        return imageToText(item);
     default:
         return `Conversion of ${item.type} to TEXT not implemented.`;
     }
@@ -152,6 +157,13 @@ function createEmptyBlock(type) {
         props = {
             backgroundColor: '#188ec5',
             height: '2px',
+        };
+        break;
+    case EDIE_BLOCK_TYPE.VSPACER:
+        props = {
+            width: '100%',
+            src: '',
+            alt: '',
         };
         break;
 

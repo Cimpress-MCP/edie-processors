@@ -404,6 +404,18 @@ export default {
                                 },
                                 'parentId': '3cf33a00-23fa-11e9-ab78-270edb21e50d',
                             },
+                            {
+                                'id': '595772f0-2577-11e9-bf6c-9b5a7457e001',
+                                'children': null,
+                                'type': 'image',
+                                'properties': {
+                                    'src': 'path_to_horse',
+                                    'width': '100%',
+                                    'alt': 'Image of a horse',
+                                    'href': 'horse_website'
+                                },
+                                'parentId': '3cf33a00-23fa-11e9-ab78-270edb21e50d',
+                            },
                         ],
                         'type': 'column',
                         'properties': {},
