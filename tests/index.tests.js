@@ -17,7 +17,14 @@ describe('edie2mjml', function() {
     });
 
     it('convert sample edie without exceptions', function() {
-        edie2hbsmjml(sampleEdie);
         edie2hbstext((sampleEdie));
+    });
+});
+
+describe('edie2text', function() {
+
+    it('convert sample edie without exceptions', function() {
+        let text = edie2hbstext((sampleEdie));
+        expect(text).to.not.contain('&nbsp;');
     });
 });

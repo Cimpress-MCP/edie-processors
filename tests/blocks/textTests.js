@@ -20,8 +20,18 @@ describe('text', function() {
         });
     });
 
+    it('convertDynamicImages converts ok', function() {
+        let cc = textToMjml({
+            properties: {
+                content: '<div><span type="dynamicImage" src="data:{{contentType}};base64,{{content}}" width="100px" height="120px" condition="content" /></div>',
+            },
+        });
+
+        expect(cc).to.equal('<mj-text ><div>{{#if content}}<img src="data:{{contentType}};base64,{{content}}" alt="" width="100px" height="120px">{{/if}}</div></mj-text>');
+    });
+
     it('text2mjml converts <mark/> elements', function() {
-        let cc = textToMjml({properties: {content:'<p>An order has been routed to fulfiller&nbsp;<span class="placeholder ck-widget" contenteditable="false">name</span>​​​​​​​</p><p>name. ' +
+        let cc = textToMjml({properties: {content: '<p>An order has been routed to fulfiller&nbsp;<span class="placeholder ck-widget" contenteditable="false">name</span>​​​​​​​</p><p>name. ' +
             'It is <mark class="edie-color-p-F0563A">required</mark> to ' +
             'It is <mark class="edie-color-p-F0563B">required</mark> to ' +
             'It is <mark class="edie-color-p-F0563B">required</mark> to ' +

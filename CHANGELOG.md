@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [0.0.13] - 2019.02.25
+### Added
+- Support for dynamic images (span type='dynamicImage')
+### Fixed/Changed
+- Remove &nbsp; from text version 
+
 ## [0.0.12] - 2019.02.22
 ### Added
 - Support for standalone image blocks that generates mj-image tags

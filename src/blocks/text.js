@@ -32,6 +32,48 @@ const extractColorClasses = (html) => {
     };
 };
 
+const convertDynamicImages = (html) => {
+    const frag = JSDOM.fragment(html);
+    let placeholders = frag.querySelectorAll('span[type="dynamicImage"]');
+    let content = html;
+    if (placeholders.length > 0 ) {
+        placeholders.forEach((ph) => {
+            let image = {
+                alt: ph.getAttribute('alt'),
+                src: ph.getAttribute('src'),
+                condition: ph.getAttribute('condition'),
+                width: ph.getAttribute('width'),
+                height: ph.getAttribute('height'),
+            };
+
+            let imgDom = dom.window.document.createElement('img');
+            imgDom.setAttribute('src', image.src || '');
+            imgDom.setAttribute('alt', image.alt || '');
+            if (image.width && image.width !== '') {
+                imgDom.setAttribute('width', image.width || '');
+            }
+            if (image.height && image.height !== '') {
+                imgDom.setAttribute('height', image.height || '');
+            }
+
+            if (image.condition) {
+                ph.parentNode.insertBefore(dom.window.document.createTextNode(`{{#if ${image.condition}}}`), ph);
+                ph.parentNode.insertBefore(imgDom, ph);
+                ph.parentNode.insertBefore(dom.window.document.createTextNode('{{/if}}'), ph);
+            } else {
+                ph.parentNode.insertBefore(imgDom, ph);
+            }
+
+            ph.parentNode.removeChild(ph);
+        });
+
+        let x = dom.window.document.createElement('div');
+        x.appendChild(frag);
+        content = x.innerHTML;
+    }
+    return content;
+};
+
 const convertPlaceholders = (html) => {
     const frag = JSDOM.fragment(html);
     let placeholders = frag.querySelectorAll('span[type="placeholder"]');
@@ -59,6 +101,7 @@ const convertMarkElementsToSpan = (html) => {
 const textToMjml = (item, encloseInSection) => {
     // Special handler for placeholders
     let content = convertPlaceholders(item.properties.content);
+    content = convertDynamicImages(content);
     content = convertMarkElementsToSpan(content);
 
     let mjmlProperties = translateProps(
@@ -80,7 +123,7 @@ const textToText = (item) => {
     // Special handler for placeholders
     let content = convertPlaceholders(item.properties.content);
 
-    return htmlToText.fromString(content, {
+    let text = htmlToText.fromString(content, {
         wordwrap: 130,
         ignoreImage: true,
         preserveNewlines: true,
@@ -90,6 +133,8 @@ const textToText = (item) => {
             },
         },
     }).trim() + '\r\n';
+
+    return text.replace(/&nbsp;/g, ' ');
 };
 
 export {
