@@ -168,7 +168,7 @@ function createEmptyBlock(type) {
             backgroundColor: '#ffffff',
             align: 'center',
             borderSize: '0px',
-            borderColor: '#ffffff'
+            borderColor: '#ffffff',
         };
         break;
 
