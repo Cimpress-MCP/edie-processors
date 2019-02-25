@@ -161,9 +161,14 @@ function createEmptyBlock(type) {
         break;
     case EDIE_BLOCK_TYPE.IMAGE:
         props = {
-            width: '100%',
+            width: '',
             src: '',
             alt: '',
+            href: '',
+            backgroundColor: '#ffffff',
+            align: 'center',
+            borderSize: '0px',
+            borderColor: '#ffffff',
         };
         break;
 
