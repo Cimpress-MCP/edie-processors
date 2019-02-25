@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [0.0.13] - 2019.02.25
+### Changed
+- Changed default values for image empty block
+
+## [0.0.13] - 2019.02.25
 ### Added
 - Support for dynamic images (span type='dynamicImage')
 ### Fixed/Changed
