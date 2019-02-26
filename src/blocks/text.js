@@ -115,7 +115,7 @@ const textToMjml = (item, blockRenderer, isTopLevelNode) => {
 
     // mj-text NOT allowed in mj-body
     return isTopLevelNode
-        ? `<mj-section ${propertiesToText({'background-color': item.properties.backgroundColor})}><mj-column>${mjText}</mj-column></mj-section>`
+        ? `<mj-section ${propertiesToText({'background-color': item.properties.backgroundColor})}><mj-column padding="0px">${mjText}</mj-column></mj-section>`
         : mjText;
 };
 

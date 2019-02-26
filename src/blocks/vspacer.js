@@ -13,7 +13,7 @@ const vspacerToMjml = (item, blockRenderer, isTopLevelNode) => {
 
     // mj-spacer NOT allowed in mj-body
     return isTopLevelNode
-        ? `<mj-section ><mj-column >${mjSpacer}</mj-column></mj-section>`
+        ? `<mj-section padding="0px"><mj-column padding="0px">${mjSpacer}</mj-column></mj-section>`
         : mjSpacer;
 };
 

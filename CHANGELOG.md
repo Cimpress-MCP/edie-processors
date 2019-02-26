@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.0.15] - 2019.02.26
 ### Changed
 - Better handle top level elements
+- Set 0px padding for auto-added containers
 
 ## [0.0.13] - 2019.02.25
 ### Changed

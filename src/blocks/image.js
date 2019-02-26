@@ -12,7 +12,7 @@ const imageToMjml = (item, blockRenderer, isTopLevelNode) => {
     const mjImage = `<mj-image ${properties} />`;
 
     return isTopLevelNode
-        ? `<mj-section ><mj-column >${mjImage}</mj-column></mj-section>`
+        ? `<mj-section padding="0px"><mj-column padding="0px">${mjImage}</mj-column></mj-section>`
         : mjImage;
 };
 

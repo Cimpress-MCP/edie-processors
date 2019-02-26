@@ -100,7 +100,7 @@ function edie2hbsmjml(edieJson) {
       .text-big { font-size: 1.4em; } 
       .text-huge { font-size: 1.8em; }
       figure.image { margin: 0; }
-      figure.image img{ width: 100%; margin: 0;}
+      figure.image img { width: 100%; margin: 0; }
       figure.image.image-style-align-left { margin-left: 0; }
       figure.image.image-style-align-left img { max-width: 50%; float: left; margin-right: 1.5em; }
       figure.image.image-style-align-right { margin-right: 0; }
@@ -108,7 +108,8 @@ function edie2hbsmjml(edieJson) {
       ${styles}
     </mj-style>
     <mj-attributes>
-        <mj-section background-color="${defaultBackground}" padding="5px"/>
+        <mj-section background-color="${defaultBackground}" padding="0px"/>
+        <mj-column padding="5px"/>
         <mj-text padding="5px"/>
     </mj-attributes>
 </mj-head>
