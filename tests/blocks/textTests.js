@@ -23,15 +23,7 @@ describe('text', function() {
     it('convertDynamicImages converts ok', function() {
         let cc = textToMjml({
             properties: {
-                content: '<p style="text-align:center;">\n' +
-                    '    <strong><span type="placeholder" content="{{#markdown}}"></span></strong>\n' +
-                    '    <span style="font-family:\'Courier New\', Courier, monospace;">\n' +
-                    '        <strong>\n' +
-                    '            <span type="placeholder" content="To make the component more versatile `<FulillerSelect/>` component from `react-cimpress-fulfillers-components` npm package now supports a new property `autoSelectMostRecent`. The property is true by default when not specified so that this wouldn\'t be a breaking change. \\n\\nSetting this property to `false` will make sure that the most recent fulfiller is not automatically preselected."></span>\n' +
-                    '        </strong>\n' +
-                    '    </span>\n' +
-                    '    <strong><span type="placeholder" content="{{/markdown}}"></span></strong>\n' +
-                    '</p>;\n',
+                content: '<div><span type="dynamicImage" src="data:{{contentType}};base64,{{content}}" width="100px" height="120px" condition="content" /></div>',
             },
         });
 
