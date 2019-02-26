@@ -19,7 +19,6 @@ const buttonToMjml = (item, blockRenderer, isTopLevelNode) => {
     return isTopLevelNode
         ? `<mj-section ><mj-column >${mjButton}</mj-column></mj-section>`
         : mjButton;
-
 };
 
 const buttonToText = (item) => {
