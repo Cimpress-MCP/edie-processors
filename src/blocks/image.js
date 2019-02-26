@@ -1,6 +1,6 @@
 import {propertiesToText, translateProps} from './common/base';
 
-const imageToMjml = (item) => {
+const imageToMjml = (item, blockRenderer, isTopLevelNode) => {
     const translations = {backgroundColor: 'container-background-color'};
     const {borderSize, borderColor, ...mjmlProperties} = translateProps(item.properties, translations);
 
@@ -9,7 +9,11 @@ const imageToMjml = (item) => {
     }
     const properties = propertiesToText(mjmlProperties);
 
-    return `<mj-image ${properties} />`;
+    const mjImage = `<mj-image ${properties} />`;
+
+    return isTopLevelNode
+        ? `<mj-section padding="0px"><mj-column padding="0px">${mjImage}</mj-column></mj-section>`
+        : mjImage;
 };
 
 const imageToText = (item) => {

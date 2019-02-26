@@ -9,50 +9,70 @@ import {loopToMjml, loopToText} from './blocks/loop';
 import {vspacerToMjml, vspacerToText} from './blocks/vspacer';
 import {imageToMjml, imageToText} from './blocks/image';
 
-const blockToMjml = (item, childrenRenderer) => {
+const blockToMjml = (item, childrenRenderer, isTopLevelNode) => {
+    let renderer = null;
     switch (item.type) {
     case EDIE_BLOCK_TYPE.MAIN:
-        return mainToMjml(item, childrenRenderer);
+        renderer = mainToMjml;
+        break;
     case EDIE_BLOCK_TYPE.TEXT:
-        return textToMjml(item);
+        renderer = textToMjml;
+        break;
     case EDIE_BLOCK_TYPE.ROW:
-        return rowToMjml(item, childrenRenderer);
+        renderer = rowToMjml;
+        break;
     case EDIE_BLOCK_TYPE.COLUMN:
-        return columnToMjml(item, childrenRenderer);
+        renderer = columnToMjml;
+        break;
     case EDIE_BLOCK_TYPE.BUTTON:
-        return buttonToMjml(item);
+        renderer = buttonToMjml;
+        break;
     case EDIE_BLOCK_TYPE.LOOP:
-        return loopToMjml(item, childrenRenderer);
+        renderer = loopToMjml;
+        break;
     case EDIE_BLOCK_TYPE.VSPACER:
-        return vspacerToMjml(item);
+        renderer = vspacerToMjml;
+        break;
     case EDIE_BLOCK_TYPE.IMAGE:
-        return imageToMjml(item);
+        renderer = imageToMjml;
+        break;
     default:
         return `Conversion of ${item.type} to MJML not implemented.`;
     }
+    return renderer(item, childrenRenderer, isTopLevelNode);
 };
 
-const blockToText = (item, childrenRenderer) => {
+const blockToText = (item, childrenRenderer, isTopLevelNode) => {
+    let renderer = null;
     switch (item.type) {
     case EDIE_BLOCK_TYPE.MAIN:
-        return mainTotext(item, childrenRenderer);
+        renderer = mainTotext;
+        break;
     case EDIE_BLOCK_TYPE.TEXT:
-        return textToText(item);
+        renderer = textToText;
+        break;
     case EDIE_BLOCK_TYPE.ROW:
-        return rowToText(item, childrenRenderer);
+        renderer = rowToText;
+        break;
     case EDIE_BLOCK_TYPE.COLUMN:
-        return columnToText(item, childrenRenderer);
+        renderer = columnToText;
+        break;
     case EDIE_BLOCK_TYPE.BUTTON:
-        return buttonToText(item);
+        renderer = buttonToText;
+        break;
     case EDIE_BLOCK_TYPE.LOOP:
-        return loopToText(item, childrenRenderer);
+        renderer = loopToText;
+        break;
     case EDIE_BLOCK_TYPE.VSPACER:
-        return vspacerToText(item);
+        renderer = vspacerToText;
+        break;
     case EDIE_BLOCK_TYPE.IMAGE:
-        return imageToText(item);
+        renderer = imageToText;
+        break;
     default:
         return `Conversion of ${item.type} to TEXT not implemented.`;
     }
+    return renderer(item, childrenRenderer, isTopLevelNode);
 };
 
 function edie2hbsmjml(edieJson) {
@@ -62,7 +82,7 @@ function edie2hbsmjml(edieJson) {
 
     let defaultBackground = edieJson.structure.properties.backgroundColor || '#ffffff';
 
-    let mjml = blockToMjml(edieJson.structure, blockToMjml);
+    let mjml = blockToMjml(edieJson.structure, blockToMjml, true);
     let colorClasses = extractColorClasses(mjml);
     let styles = '';
     Object.keys(colorClasses.pen).forEach((penClass) => {
@@ -79,16 +99,17 @@ function edie2hbsmjml(edieJson) {
       .text-small { font-size: .85em; } 
       .text-big { font-size: 1.4em; } 
       .text-huge { font-size: 1.8em; }
-      figure.image { margin: 0em;}
-      figure.image img{ width: 100%; margin: 1em 0em 1em 0em;}
-      figure.image.image-style-align-left { margin-left: 0px; }
+      figure.image { margin: 0; }
+      figure.image img { width: 100%; margin: 0; }
+      figure.image.image-style-align-left { margin-left: 0; }
       figure.image.image-style-align-left img { max-width: 50%; float: left; margin-right: 1.5em; }
-      figure.image.image-style-align-right { margin-right: 0px; }
+      figure.image.image-style-align-right { margin-right: 0; }
       figure.image.image-style-align-right img { max-width: 50%; float: right; margin-left: 1.5em; }
       ${styles}
     </mj-style>
     <mj-attributes>
-        <mj-section background-color="${defaultBackground}" padding="5px"/>
+        <mj-section background-color="${defaultBackground}" padding="0px"/>
+        <mj-column padding="5px"/>
         <mj-text padding="5px"/>
     </mj-attributes>
 </mj-head>
@@ -101,7 +122,7 @@ function edie2hbstext(edieJson) {
         return 'Not supported version!';
     }
 
-    return blockToText(edieJson.structure, blockToText);
+    return blockToText(edieJson.structure, blockToText, true);
 }
 
 const createEmptyFormat = (v) => {

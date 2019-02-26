@@ -98,7 +98,7 @@ const convertMarkElementsToSpan = (html) => {
     return r;
 };
 
-const textToMjml = (item, encloseInSection) => {
+const textToMjml = (item, blockRenderer, isTopLevelNode) => {
     // Special handler for placeholders
     let content = convertPlaceholders(item.properties.content);
     content = convertDynamicImages(content);
@@ -114,14 +114,15 @@ const textToMjml = (item, encloseInSection) => {
     let mjText = `<mj-text ${properties}>${content}</mj-text>`;
 
     // mj-text NOT allowed in mj-body
-    return encloseInSection
-        ? `<mj-section ${propertiesToText({'background-color': item.properties.backgroundColor})}><mj-column>${mjText}</mj-column></mj-section>`
+    return isTopLevelNode
+        ? `<mj-section ${propertiesToText({'background-color': item.properties.backgroundColor})}><mj-column padding="0px">${mjText}</mj-column></mj-section>`
         : mjText;
 };
 
-const textToText = (item) => {
+const textToText = (item, blockRenderer, isTopLevelNode) => {
     // Special handler for placeholders
     let content = convertPlaceholders(item.properties.content);
+    content = convertDynamicImages(content);
 
     let text = htmlToText.fromString(content, {
         wordwrap: 130,
