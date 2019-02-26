@@ -1,6 +1,6 @@
 import {propertiesToText, translateProps} from './common/base';
 
-const buttonToMjml = (item) => {
+const buttonToMjml = (item, blockRenderer, isTopLevelNode) => {
     let keyTranslations = {
         'backgroundColor': 'background-color',
         'textAlign': 'text-align',
@@ -13,7 +13,13 @@ const buttonToMjml = (item) => {
 
     let properties = propertiesToText(mjmlProperties, ['content', 'borderSize', 'borderColor']);
 
-    return `<mj-button ${properties}>${item.properties.content}</mj-button>`;
+    let mjButton = `<mj-button ${properties}>${item.properties.content}</mj-button>`;
+
+    // mj-spacer NOT allowed in mj-body
+    return isTopLevelNode
+        ? `<mj-section ><mj-column >${mjButton}</mj-column></mj-section>`
+        : mjButton;
+
 };
 
 const buttonToText = (item) => {

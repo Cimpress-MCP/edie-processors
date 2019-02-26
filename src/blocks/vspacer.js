@@ -1,6 +1,6 @@
 import {propertiesToText, translateProps} from './common/base';
 
-const vspacerToMjml = (item, encloseInSection) => {
+const vspacerToMjml = (item, blockRenderer, isTopLevelNode) => {
     let keyTranslations = {
         'backgroundColor': 'container-background-color',
     };
@@ -12,12 +12,12 @@ const vspacerToMjml = (item, encloseInSection) => {
     let mjSpacer =`<mj-spacer ${properties}/>`;
 
     // mj-spacer NOT allowed in mj-body
-    return encloseInSection
+    return isTopLevelNode
         ? `<mj-section ><mj-column >${mjSpacer}</mj-column></mj-section>`
         : mjSpacer;
 };
 
-const vspacerToText = (item, isAtMainLevel) => {
+const vspacerToText = (item, blockRenderer, isTopLevelNode) => {
     return '-----\r\n';
 };
 

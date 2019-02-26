@@ -1,9 +1,6 @@
-import {propertiesToText, translateProps, EDIE_BLOCK_TYPE} from './common/base';
-import {textToMjml} from './text';
-import {loopToMjml} from './loop';
-import {vspacerToMjml} from './vspacer';
+import {propertiesToText, translateProps} from './common/base';
 
-const mainToMjml = (item, childrenRenderer) => {
+const mainToMjml = (item, blockRenderer) => {
     let keyTranslations = {
         'emailBackgroundColor': 'background-color',
         'emailWidth': 'width',
@@ -12,21 +9,9 @@ const mainToMjml = (item, childrenRenderer) => {
     let properties = propertiesToText(translateProps(item.properties, keyTranslations), ['backgroundColor', 'isPublic']);
     let items = '';
     (item.children || []).forEach((x) => {
-        switch (x.type) {
-        case EDIE_BLOCK_TYPE.TEXT:
-            items += textToMjml(x, childrenRenderer, true);
-            break;
-        case EDIE_BLOCK_TYPE.VSPACER:
-            items += vspacerToMjml(x, true);
-            break;
-        case EDIE_BLOCK_TYPE.LOOP:
-            items += loopToMjml(x, childrenRenderer, true);
-            break;
-        default:
-            items += childrenRenderer(x, childrenRenderer);
-            break;
-        }
+        items += blockRenderer(x, blockRenderer, true);
     });
+
     return `<mj-body ${properties}>
 <mj-section background-color="${item.properties['emailBackgroundColor']}"><mj-column><mj-text padding="2px"></mj-text></mj-column></mj-section>
 ${items}
@@ -34,10 +19,10 @@ ${items}
 </mj-body>`;
 };
 
-const mainTotext = (item, childrenRenderer) => {
+const mainTotext = (item, blockRenderer) => {
     let items = '';
     (item.children || []).forEach((x) => {
-        items += childrenRenderer(x, childrenRenderer);
+        items += blockRenderer(x, blockRenderer, true);
     });
     return items + '\r\n';
 };
