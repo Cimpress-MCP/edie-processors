@@ -1,4 +1,4 @@
-import {EDIE_BLOCK_TYPE, EDIE_PROP_TYPE} from './formatDefinition';
+import {EDIE_PROP_TYPE} from './formatDefinition';
 
 const translateProps = (props, translations) => {
     let translated = {};
@@ -38,7 +38,7 @@ const toMjml = (mjElement, edieProps, ediePropsDefinition) => {
         .forEach((key) => {
             let edieKeyDefinition = ediePropsDefinition[key];
             if (!edieKeyDefinition) {
-                console.warn(`No definition found for creating '${mjElement}' and property '${key}'` );
+                // console.warn(`No definition found for creating '${mjElement}' and property '${key}'` );
                 return;
             }
             switch (edieKeyDefinition.type) {
@@ -56,7 +56,6 @@ const toMjml = (mjElement, edieProps, ediePropsDefinition) => {
                 break;
 
             case EDIE_PROP_TYPE.COMPUTED:
-                console.log('x', ediePropsDefinition[key]);
                 computedProp = ediePropsDefinition[key].compute(edieProps);
                 if (computedProp) {
                     propsAsText = propsAsText + ' ' + (computedProp.key) + '="' + computedProp.value + '"';
@@ -69,7 +68,7 @@ const toMjml = (mjElement, edieProps, ediePropsDefinition) => {
 };
 
 const encloseInMjmlSection = (item) => {
-    return `<mj-section padding="0px"><mj-column padding="0px">${item}</mj-column></mj-section>`
+    return `<mj-section padding="0px"><mj-column padding="0px">${item}</mj-column></mj-section>`;
 };
 
 export {

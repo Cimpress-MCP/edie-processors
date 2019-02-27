@@ -11,5 +11,5 @@ const computeBorder = (edieProps) => {
 
 
 export {
-    computeBorder
-}
+    computeBorder,
+};
