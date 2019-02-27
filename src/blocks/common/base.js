@@ -1,25 +1,48 @@
-const EDIE_BLOCK_TYPE = {
-    MAIN: 'main',
-    COLUMN: 'column',
-    ROW: 'row',
-    TEXT: 'text',
-    BUTTON: 'button',
-    LOOP: 'loop',
-    VSPACER: 'vspacer',
-    IMAGE: 'image',
-};
+import {EDIE_PROP_TYPE} from './formatDefinition';
 
-const translateProps = (props, translations) => {
-    let translated = {};
-    Object.keys(props)
+const toMjml = (mjElement, edieProps, ediePropsDefinition) => {
+    let body = '';
+
+    let propsAsText = '';
+    let computedProp;
+
+    Object.keys(ediePropsDefinition || {})
+        // Handle only attributes with value
+        .filter((k) => edieProps[k] || ediePropsDefinition[k].type === EDIE_PROP_TYPE.COMPUTED)
         .forEach((key) => {
-            if (translations[key]) {
-                translated[translations[key]] = props[key];
-            } else {
-                translated[key] = props[key];
+            let edieKeyDefinition = ediePropsDefinition[key];
+            if (!edieKeyDefinition) {
+                // console.warn(`No definition found for creating '${mjElement}' and property '${key}'` );
+                return;
+            }
+            switch (edieKeyDefinition.type) {
+            //
+            case EDIE_PROP_TYPE.BODY:
+                body = edieProps[key];
+                break;
+
+            case EDIE_PROP_TYPE.ATTRIBUTE:
+                propsAsText = propsAsText + ' ' + (key) + '="' + edieProps[key] + '"';
+                break;
+
+            case EDIE_PROP_TYPE.TRANSLATED:
+                propsAsText = propsAsText + ' ' + (ediePropsDefinition[key].mjAttribute) + '="' + edieProps[key] + '"';
+                break;
+
+            case EDIE_PROP_TYPE.COMPUTED:
+                computedProp = ediePropsDefinition[key].compute(edieProps);
+                if (computedProp) {
+                    propsAsText = propsAsText + ' ' + (computedProp.key) + '="' + computedProp.value + '"';
+                }
+                break;
             }
         });
-    return translated;
+
+    if (ediePropsDefinition.__selfClosing) {
+        return `<${mjElement} ${propsAsText.trim()}/>\r\n`;
+    }
+
+    return `<${mjElement} ${propsAsText.trim()}>${body}</${mjElement}>\r\n`;
 };
 
 const propertiesToText = (props, keysToIgnore) => {
@@ -35,8 +58,15 @@ const propertiesToText = (props, keysToIgnore) => {
     return properties.trim();
 };
 
+const encloseInMjmlSection = (item, addtionalSectionProps) => {
+    if (!addtionalSectionProps) {
+        return `<mj-section padding="0px"><mj-column padding="0px">${item}</mj-column></mj-section>\r\n`;
+    }
+
+    return `<mj-section padding="0px" ${propertiesToText(addtionalSectionProps)}><mj-column padding="0px">${item}</mj-column></mj-section>\r\n`;
+};
+
 export {
-    EDIE_BLOCK_TYPE,
-    translateProps,
-    propertiesToText,
+    toMjml,
+    encloseInMjmlSection,
 };

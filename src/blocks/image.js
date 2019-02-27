@@ -1,19 +1,12 @@
-import {propertiesToText, translateProps} from './common/base';
+import {encloseInMjmlSection, toMjml} from './common/base';
+import {EDIE_BLOCK_TYPE, EDIE_PROPS} from './common/formatDefinition';
 
 const imageToMjml = (item, blockRenderer, isTopLevelNode) => {
-    const translations = {backgroundColor: 'container-background-color'};
-    const {borderSize, borderColor, ...mjmlProperties} = translateProps(item.properties, translations);
+    let mjImage = toMjml('mj-image', item.properties, EDIE_PROPS[EDIE_BLOCK_TYPE.IMAGE]);
 
-    if (borderSize && borderColor) {
-        mjmlProperties.border = `${borderSize} solid ${borderColor}`;
-    }
-    const properties = propertiesToText(mjmlProperties);
-
-    const mjImage = `<mj-image ${properties} />`;
-
-    return isTopLevelNode
-        ? `<mj-section padding="0px"><mj-column padding="0px">${mjImage}</mj-column></mj-section>`
-        : mjImage;
+    // mj-image NOT allowed in mj-body, so in case this is what EDIE
+    // defines, we need to enclose in section/column
+    return isTopLevelNode ? encloseInMjmlSection(mjImage) : mjImage;
 };
 
 const imageToText = (item) => {

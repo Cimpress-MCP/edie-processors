@@ -1,5 +1,5 @@
 import uuidv1 from 'uuid/v1';
-import {EDIE_BLOCK_TYPE} from './blocks/common/base';
+import {EDIE_BLOCK_TYPE} from './blocks/common/formatDefinition';
 import {mainToMjml, mainTotext} from './blocks/main';
 import {extractColorClasses, textToMjml, textToText} from './blocks/text';
 import {rowToMjml, rowToText} from './blocks/row';
@@ -155,11 +155,13 @@ function createEmptyBlock(type) {
             textAlign: 'center',
             borderSize: '0px',
             borderColor: 'transparent',
+            content: 'Button',
         };
         break;
 
     case EDIE_BLOCK_TYPE.TEXT:
         props = {
+            content: '',
         };
         break;
 

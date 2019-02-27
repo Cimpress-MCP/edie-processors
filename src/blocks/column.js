@@ -1,21 +1,15 @@
-import {propertiesToText, translateProps} from './common/base';
+import {toMjml} from './common/base';
+import {EDIE_BLOCK_TYPE, EDIE_PROPS} from './common/formatDefinition';
 
 const columnToMjml = (item, blockRenderer, isTopLevelNode) => {
-    let keyTranslations = {
-        'backgroundColor': 'background-color',
-    };
-
-    let mjmlProperties = translateProps(item.properties, keyTranslations);
-    if (mjmlProperties['borderSize'] && mjmlProperties['borderColor']) {
-        mjmlProperties['border'] = mjmlProperties['borderSize'] + ' solid ' + mjmlProperties['borderColor'];
-    }
-
-    let properties = propertiesToText(mjmlProperties, ['content', 'borderSize', 'borderColor']);
     let items = '';
     (item.children || []).forEach((x) => {
         items += blockRenderer(x, blockRenderer, false);
     });
-    return `<mj-column ${properties}>${items}</mj-column>`;
+
+    item.properties.children = items;
+
+    return toMjml('mj-column', item.properties, EDIE_PROPS[EDIE_BLOCK_TYPE.COLUMN]);
 };
 
 const columnToText = (item, childrenRenderer, isTopLevelNode) => {

@@ -1,5 +1,6 @@
 import {extractColorClasses, textToMjml} from '../../src/blocks/text';
 import {expect} from 'chai';
+import {equalIgnoringNewLines} from '../helpers';
 
 describe('text', function() {
     it('extractColorClasses returns unique classes', function() {
@@ -27,7 +28,7 @@ describe('text', function() {
             },
         });
 
-        expect(cc).to.equal('<mj-text ><div>{{#if content}}<img src="data:{{contentType}};base64,{{content}}" alt="" width="100px" height="120px">{{/if}}</div></mj-text>');
+        equalIgnoringNewLines(cc,'<mj-text ><div>{{#if content}}<img src="data:{{contentType}};base64,{{content}}" alt="" width="100px" height="120px">{{/if}}</div></mj-text>');
     });
 
     it('text2mjml converts <mark/> elements', function() {

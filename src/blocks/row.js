@@ -1,20 +1,15 @@
-import {propertiesToText, translateProps} from './common/base';
+import {toMjml} from './common/base';
+import {EDIE_BLOCK_TYPE, EDIE_PROPS} from './common/formatDefinition';
 
 const rowToMjml = (item, blockRenderer, isTopLevelNode) => {
-    let keyTranslations = {
-        'backgroundColor': 'background-color',
-    };
-
-    let mjmlProperties = translateProps(item.properties, keyTranslations);
-
-    let properties = propertiesToText(mjmlProperties);
     let items = '';
     (item.children || []).forEach((x) => {
-        // Note: All children of a row are NOT top level elements
         items += blockRenderer(x, blockRenderer, false);
     });
-    return `<mj-section ${properties}>${items}</mj-section>
-`;
+
+    item.properties.children = items;
+
+    return toMjml('mj-section', item.properties, EDIE_PROPS[EDIE_BLOCK_TYPE.ROW]);
 };
 
 const rowToText = (item, blockRenderer, isTopLevelNode) => {
