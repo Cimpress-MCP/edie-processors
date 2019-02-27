@@ -1,24 +1,12 @@
-import {propertiesToText, translateProps} from './common/base';
+import {encloseInMjmlSection, toMjml} from './common/base';
+import {EDIE_PROPS, EDIE_BLOCK_TYPE} from './common/formatDefinition';
 
 const buttonToMjml = (item, blockRenderer, isTopLevelNode) => {
-    let keyTranslations = {
-        'backgroundColor': 'background-color',
-        'textAlign': 'text-align',
-    };
+    let mjButton = toMjml('mj-button', item.properties, EDIE_PROPS[EDIE_BLOCK_TYPE.BUTTON]);
 
-    let mjmlProperties = translateProps(item.properties, keyTranslations);
-    if (mjmlProperties['borderSize'] && mjmlProperties['borderColor']) {
-        mjmlProperties['border'] = mjmlProperties['borderSize'] + ' solid ' + mjmlProperties['borderColor'];
-    }
-
-    let properties = propertiesToText(mjmlProperties, ['content', 'borderSize', 'borderColor']);
-
-    let mjButton = `<mj-button ${properties}>${item.properties.content}</mj-button>`;
-
-    // mj-spacer NOT allowed in mj-body
-    return isTopLevelNode
-        ? `<mj-section padding="0px"><mj-column padding="0px">${mjButton}</mj-column></mj-section>`
-        : mjButton;
+    // mj-button NOT allowed in mj-body, so in case this is what EDIE
+    // defines, we need to esclose in section/column
+    return isTopLevelNode ? encloseInMjmlSection(mjButton) : mjButton;
 };
 
 const buttonToText = (item) => {

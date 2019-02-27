@@ -155,6 +155,7 @@ function createEmptyBlock(type) {
             textAlign: 'center',
             borderSize: '0px',
             borderColor: 'transparent',
+            content: 'Button',
         };
         break;
 
