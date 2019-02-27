@@ -50,6 +50,7 @@ const EDIE_PROPS = {
         borderSize: propAsSkip(),
         borderColor: propAsSkip(),
         borderRadius: propTranslated('border-radius'),
+        backgroundColor: propTranslated('background-color'),
         padding: propAsAttribute(),
         border: propAsComputed(computeBorder),
         content: propAsBody(),

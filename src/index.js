@@ -178,8 +178,10 @@ function createEmptyBlock(type) {
 
     case EDIE_BLOCK_TYPE.VSPACER:
         props = {
-            backgroundColor: '#188ec5',
-            height: '2px',
+            lineColor: '#188ec5',
+            lineHeight: '2px',
+            lineStyle: 'solid',
+            padding: '0px',
         };
         break;
     case EDIE_BLOCK_TYPE.IMAGE:
