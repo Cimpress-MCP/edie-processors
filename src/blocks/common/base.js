@@ -1,31 +1,5 @@
 import {EDIE_PROP_TYPE} from './formatDefinition';
 
-const translateProps = (props, translations) => {
-    let translated = {};
-    Object.keys(props)
-        .forEach((key) => {
-            if (translations[key]) {
-                translated[translations[key]] = props[key];
-            } else {
-                translated[key] = props[key];
-            }
-        });
-    return translated;
-};
-
-const propertiesToText = (props, keysToIgnore) => {
-    let properties = '';
-    Object.keys(props || {})
-        .filter((key) => !(keysToIgnore || []).includes(key))
-        .forEach((key) => {
-            // TODO FIX: Make sure props[key] is escaped !!!
-            if (props[key]) {
-                properties = properties + ' ' + key + '="' + props[key] + '"';
-            }
-        });
-    return properties.trim();
-};
-
 const toMjml = (mjElement, edieProps, ediePropsDefinition) => {
     let body = '';
 
@@ -33,7 +7,7 @@ const toMjml = (mjElement, edieProps, ediePropsDefinition) => {
     let computedProp;
 
     Object.keys(ediePropsDefinition || {})
-    // Handle only attributes with value
+        // Handle only attributes with value
         .filter((k) => edieProps[k] || ediePropsDefinition[k].type === EDIE_PROP_TYPE.COMPUTED)
         .forEach((key) => {
             let edieKeyDefinition = ediePropsDefinition[key];
@@ -47,7 +21,7 @@ const toMjml = (mjElement, edieProps, ediePropsDefinition) => {
                 body = edieProps[key];
                 break;
 
-            case EDIE_PROP_TYPE.AS_IS:
+            case EDIE_PROP_TYPE.ATTRIBUTE:
                 propsAsText = propsAsText + ' ' + (key) + '="' + edieProps[key] + '"';
                 break;
 
@@ -64,16 +38,35 @@ const toMjml = (mjElement, edieProps, ediePropsDefinition) => {
             }
         });
 
-    return `<${mjElement} ${propsAsText.trim()}>${body}</${mjElement}>`;
+    if (ediePropsDefinition.__selfClosing) {
+        return `<${mjElement} ${propsAsText.trim()}/>\r\n`;
+    }
+
+    return `<${mjElement} ${propsAsText.trim()}>${body}</${mjElement}>\r\n`;
 };
 
-const encloseInMjmlSection = (item) => {
-    return `<mj-section padding="0px"><mj-column padding="0px">${item}</mj-column></mj-section>`;
+const propertiesToText = (props, keysToIgnore) => {
+    let properties = '';
+    Object.keys(props || {})
+        .filter((key) => !(keysToIgnore || []).includes(key))
+        .forEach((key) => {
+            // TODO FIX: Make sure props[key] is escaped !!!
+            if (props[key]) {
+                properties = properties + ' ' + key + '="' + props[key] + '"';
+            }
+        });
+    return properties.trim();
+};
+
+const encloseInMjmlSection = (item, addtionalSectionProps) => {
+    if (!addtionalSectionProps) {
+        return `<mj-section padding="0px"><mj-column padding="0px">${item}</mj-column></mj-section>\r\n`;
+    }
+
+    return `<mj-section padding="0px" ${propertiesToText(addtionalSectionProps)}><mj-column padding="0px">${item}</mj-column></mj-section>\r\n`;
 };
 
 export {
     toMjml,
     encloseInMjmlSection,
-    translateProps,
-    propertiesToText,
 };

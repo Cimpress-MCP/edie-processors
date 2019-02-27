@@ -1,7 +1,7 @@
 import {JSDOM} from 'jsdom';
 import htmlToText from 'html-to-text';
-
-import {translateProps, propertiesToText} from './common/base';
+import {encloseInMjmlSection, toMjml} from './common/base';
+import {EDIE_BLOCK_TYPE, EDIE_PROPS} from './common/formatDefinition';
 
 const dom = new JSDOM();
 
@@ -99,24 +99,16 @@ const convertMarkElementsToSpan = (html) => {
 };
 
 const textToMjml = (item, blockRenderer, isTopLevelNode) => {
-    // Special handler for placeholders
     let content = convertPlaceholders(item.properties.content);
     content = convertDynamicImages(content);
     content = convertMarkElementsToSpan(content);
+    item.properties.content = content;
 
-    let mjmlProperties = translateProps(
-        item.properties, {
-            backgroundColor: 'container-background-color',
-        });
+    const mjText = toMjml('mj-text', item.properties, EDIE_PROPS[EDIE_BLOCK_TYPE.TEXT]);
 
-    let properties = propertiesToText(mjmlProperties, ['content']);
-
-    let mjText = `<mj-text ${properties}>${content}</mj-text>`;
-
-    // mj-text NOT allowed in mj-body
-    return isTopLevelNode
-        ? `<mj-section ${propertiesToText({'background-color': item.properties.backgroundColor})}><mj-column padding="0px">${mjText}</mj-column></mj-section>`
-        : mjText;
+    // mj-text NOT allowed in mj-body, so in case this is what EDIE
+    // defines, we need to enclose in section/column
+    return isTopLevelNode ? encloseInMjmlSection(mjText, {'background-color': item.properties.backgroundColor}) : mjText;
 };
 
 const textToText = (item, blockRenderer, isTopLevelNode) => {

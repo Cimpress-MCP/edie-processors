@@ -1,6 +1,6 @@
 {
   "name": "edie-processors",
-  "version": "0.0.15",
+  "version": "0.1.0",
   "description": "A set of helper methods",
   "main": "./lib/index.js",
   "files": [

@@ -1,5 +1,6 @@
 import {buttonToMjml} from '../../src/blocks/button';
 import {expect} from 'chai';
+import {equalIgnoringNewLines} from '../helpers';
 
 const invalidRenderer = () => {
     throw new Error('Renderer should not be called when rendering buttons');
@@ -28,12 +29,12 @@ describe('button', function() {
 
     it('buttonToMjml, non-top, mjml generated correctly', function() {
         const mjml = buttonToMjml(fullButton, invalidRenderer, false );
-        expect(mjml).to.equal(fullButtonInMjml);
+        expect(mjml.trim()).to.equal(fullButtonInMjml);
     });
 
     it('buttonToMjml, top, mjml generated correctly', function() {
         const mjml = buttonToMjml(fullButton, invalidRenderer, true );
 
-        expect(mjml).to.equal(`<mj-section padding="0px"><mj-column padding="0px">${fullButtonInMjml}</mj-column></mj-section>`);
+        equalIgnoringNewLines(mjml, `<mj-section padding="0px"><mj-column padding="0px">${fullButtonInMjml}</mj-column></mj-section>`);
     });
 });

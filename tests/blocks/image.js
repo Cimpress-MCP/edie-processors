@@ -1,5 +1,6 @@
 import {imageToText, imageToMjml} from '../../src/blocks/image';
 import {expect} from 'chai';
+import {equalIgnoringNewLines} from '../helpers';
 
 describe('image', function() {
     describe('imageToText', function() {
@@ -57,7 +58,7 @@ describe('image', function() {
                 },
             };
             const mjml = imageToMjml(imageItem);
-            expect(mjml).to.equal('<mj-image src="url_to_horse_image" alt="image of a horse" href="route_to_horse" width="100%" border="0px solid #4f5d75" />');
+            equalIgnoringNewLines(mjml, '<mj-image src="url_to_horse_image" href="route_to_horse" alt="image of a horse" width="100%" border="0px solid #4f5d75"/>');
         });
     });
 });

@@ -5,7 +5,7 @@ const buttonToMjml = (item, blockRenderer, isTopLevelNode) => {
     let mjButton = toMjml('mj-button', item.properties, EDIE_PROPS[EDIE_BLOCK_TYPE.BUTTON]);
 
     // mj-button NOT allowed in mj-body, so in case this is what EDIE
-    // defines, we need to esclose in section/column
+    // defines, we need to enclose in section/column
     return isTopLevelNode ? encloseInMjmlSection(mjButton) : mjButton;
 };
 

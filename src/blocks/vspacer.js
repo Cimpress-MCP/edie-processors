@@ -1,20 +1,12 @@
-import {propertiesToText, translateProps} from './common/base';
+import {encloseInMjmlSection, toMjml} from './common/base';
+import {EDIE_BLOCK_TYPE, EDIE_PROPS} from './common/formatDefinition';
 
 const vspacerToMjml = (item, blockRenderer, isTopLevelNode) => {
-    let keyTranslations = {
-        'backgroundColor': 'container-background-color',
-    };
+    let mjSpacer = toMjml('mj-divider', item.properties, EDIE_PROPS[EDIE_BLOCK_TYPE.VSPACER]);
 
-    let mjmlProperties = translateProps(item.properties, keyTranslations);
-
-    let properties = propertiesToText(mjmlProperties, []);
-
-    let mjSpacer =`<mj-spacer ${properties}/>`;
-
-    // mj-spacer NOT allowed in mj-body
-    return isTopLevelNode
-        ? `<mj-section padding="0px"><mj-column padding="0px">${mjSpacer}</mj-column></mj-section>`
-        : mjSpacer;
+    // mj-spacer NOT allowed in mj-body, so in case this is what EDIE
+    // defines, we need to enclose in section/column
+    return isTopLevelNode ? encloseInMjmlSection(mjSpacer) : mjSpacer;
 };
 
 const vspacerToText = (item, blockRenderer, isTopLevelNode) => {

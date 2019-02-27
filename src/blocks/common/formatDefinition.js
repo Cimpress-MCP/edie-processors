@@ -12,7 +12,7 @@ const EDIE_BLOCK_TYPE = {
 };
 
 const EDIE_PROP_TYPE = {
-    AS_IS: 'as-is',
+    ATTRIBUTE: 'attribute',
     SKIP: 'skip',
     TRANSLATED: 'translated',
     BODY: 'body',
@@ -20,7 +20,7 @@ const EDIE_PROP_TYPE = {
 };
 
 const propAsAttribute = () => ({
-    type: EDIE_PROP_TYPE.AS_IS,
+    type: EDIE_PROP_TYPE.ATTRIBUTE,
 });
 
 const propAsBody = () => ({
@@ -54,6 +54,19 @@ const EDIE_PROPS = {
         border: propAsComputed(computeBorder),
         content: propAsBody(),
     },
+    [EDIE_BLOCK_TYPE.IMAGE]: {
+        __selfClosing: true,
+        src: propAsAttribute(),
+        href: propAsAttribute(),
+        alt: propAsAttribute(),
+        align: propAsAttribute(),
+        width: propAsAttribute(),
+        borderSize: propAsSkip(),
+        borderColor: propAsSkip(),
+        backgroundColor: propTranslated('container-background-color'),
+        padding: propAsAttribute(),
+        border: propAsComputed(computeBorder),
+    },
     [EDIE_BLOCK_TYPE.COLUMN]: {
         width: propAsAttribute(),
         padding: propAsAttribute(),
@@ -62,6 +75,34 @@ const EDIE_PROPS = {
         borderSize: propAsSkip(),
         borderColor: propAsSkip(),
         border: propAsComputed(computeBorder),
+        children: propAsBody(),
+    },
+    [EDIE_BLOCK_TYPE.ROW]: {
+        padding: propAsAttribute(),
+        backgroundColor: propTranslated('background-color'),
+        borderSize: propAsSkip(),
+        borderColor: propAsSkip(),
+        border: propAsComputed(computeBorder),
+        children: propAsBody(),
+        fullWidth: propTranslated('full-width'),
+    },
+    [EDIE_BLOCK_TYPE.TEXT]: {
+        backgroundColor: propTranslated('container-background-color'),
+        padding: propAsAttribute(),
+        content: propAsBody(),
+    },
+    [EDIE_BLOCK_TYPE.VSPACER]: {
+        __selfClosing: true,
+        lineHeight: propTranslated('border-width'),
+        lineStyle: propTranslated('border-style'),
+        lineColor: propTranslated('border-color'),
+        backgroundColor: propTranslated('container-background-color'),
+        padding: propAsAttribute(),
+    },
+    [EDIE_BLOCK_TYPE.MAIN]: {
+        emailBackgroundColor: propTranslated('background-color'),
+        emailWidth: propTranslated('width'),
+        backgroundColor: propAsSkip(),
         children: propAsBody(),
     },
 };
