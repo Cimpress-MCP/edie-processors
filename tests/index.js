@@ -78,21 +78,21 @@ describe('edie2mjml', function() {
 <mj-column width="20%"><mj-text ><p style="text-align:right;">{{toFixed (sum (pluck items 'pricing-information.tradePrice.price')) 2}}</p></mj-text>
 </mj-column>
 </mj-section>
-<mj-section ><mj-column ><mj-button width="200px" background-color="#35ad96" border="0px solid #127769">ACCEPT</mj-button>
+<mj-section ><mj-column ><mj-button color="#ffffff" width="200px" background-color="#35ad96" border="0px solid #127769">ACCEPT</mj-button>
 <mj-image src="path_to_horse" href="horse_website" alt="Image of a horse" width="100%" border="0px solid #4f5d75"/>
 </mj-column>
-<mj-column ><mj-button width="200px" background-color="#f0563a" border="2px solid #a9d6e5">REJECT</mj-button>
+<mj-column ><mj-button color="#ffffff" width="200px" background-color="#f0563a" border="2px solid #a9d6e5">REJECT</mj-button>
 </mj-column>
-<mj-column ><mj-button width="200px" background-color="#006f8a" border="0px solid #4f5d75">ORDER SHIPPED</mj-button>
+<mj-column ><mj-button color="#ffffff" width="200px" background-color="#006f8a" border="0px solid #4f5d75">ORDER SHIPPED</mj-button>
 </mj-column>
 </mj-section>
 <mj-section padding="0px" ><mj-column padding="0px"><mj-text ><p style="text-align:center;"><span class="text-huge"><strong>Contact National Pen</strong></span></p></mj-text>
 </mj-column></mj-section>
 <mj-section ><mj-column width="33%"></mj-column>
-<mj-column width="34%"><mj-button width="200px" background-color="#697582">STOCK</mj-button>
-<mj-button width="200px" background-color="#697582">DELIVERY</mj-button>
-<mj-button width="200px" background-color="#697582">ARTWORK</mj-button>
-<mj-button width="200px" background-color="#697582">QUALITY</mj-button>
+<mj-column width="34%"><mj-button color="#ffffff" width="200px" background-color="#697582">STOCK</mj-button>
+<mj-button color="#ffffff" width="200px" background-color="#697582">DELIVERY</mj-button>
+<mj-button color="#ffffff" width="200px" background-color="#697582">ARTWORK</mj-button>
+<mj-button color="#ffffff" width="200px" background-color="#697582">QUALITY</mj-button>
 </mj-column>
 <mj-column width="33%"></mj-column>
 </mj-section>

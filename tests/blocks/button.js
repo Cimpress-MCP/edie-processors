@@ -10,9 +10,11 @@ describe('button', function() {
     const fullButton = {
         properties: {
             content: 'caption',
+            backgroundColor: '#0f0',
             href: 'http://ab.com',
             align: 'right',
             width: '100px',
+            color: '#f00',
             borderSize: '2px',
             borderColor: '#4f5d75',
             borderRadius: '10px',
@@ -21,9 +23,11 @@ describe('button', function() {
     };
 
     const fullButtonInMjml = '<mj-button href="http://ab.com" ' +
+        'color="#f00" ' +
         'align="right" ' +
         'width="100px" ' +
         'border-radius="10px" ' +
+        'background-color="#0f0" ' +
         'padding="1px 2px" ' +
         'border="2px solid #4f5d75">caption</mj-button>';
 
