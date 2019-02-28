@@ -98,10 +98,22 @@ const convertMarkElementsToSpan = (html) => {
     return r;
 };
 
+const convertParagraphElementsToDiv = (html) => {
+    let r = html.replace(/<p /g, '<div ');
+    r = r.replace(/<p>/g, '<div>');
+    r = r.replace(/<\/p>/g, '</div>');
+    return r;
+};
+
 const textToMjml = (item, blockRenderer, isTopLevelNode) => {
     let content = convertPlaceholders(item.properties.content);
     content = convertDynamicImages(content);
     content = convertMarkElementsToSpan(content);
+
+    if (item.properties.treatParagraphsAsDiv) {
+        content = convertParagraphElementsToDiv(content);
+    }
+
     item.properties.content = content;
 
     const mjText = toMjml('mj-text', item.properties, EDIE_PROPS[EDIE_BLOCK_TYPE.TEXT]);

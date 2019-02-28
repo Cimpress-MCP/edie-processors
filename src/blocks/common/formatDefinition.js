@@ -45,6 +45,7 @@ const propAsComputed = (func) => ({
 const EDIE_PROPS = {
     [EDIE_BLOCK_TYPE.BUTTON]: {
         href: propAsAttribute(),
+        color: propAsAttribute(),
         align: propAsAttribute(),
         width: propAsAttribute(),
         borderSize: propAsSkip(),
@@ -91,6 +92,7 @@ const EDIE_PROPS = {
         backgroundColor: propTranslated('container-background-color'),
         padding: propAsAttribute(),
         content: propAsBody(),
+        treatParagraphsAsDiv: propAsSkip(),
     },
     [EDIE_BLOCK_TYPE.VSPACER]: {
         __selfClosing: true,
