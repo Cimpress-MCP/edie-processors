@@ -120,6 +120,13 @@ const EDIE_PROPS = {
         emailWidth: propTranslated('width'),
         backgroundColor: propAsSkip(),
         children: propAsBody(),
+        //
+        // These are marked as 'skipped' because of speial handling outside
+        // of the scope of MAIN element. Added here for consistency.
+        defaultTextLineHeight: propAsSkip(),
+        defaultRowPadding: propAsSkip(),
+        defaultColumnPadding: propAsSkip(),
+        defaultTextPadding: propAsSkip(),
     },
     [EDIE_BLOCK_TYPE.LOOP]: {
         // Loop is a special type of element that has no representation as mj element

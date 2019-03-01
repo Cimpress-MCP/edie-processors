@@ -30,9 +30,9 @@ describe('edie2mjml', function() {
 
     </mj-style>
     <mj-attributes>
-        <mj-section background-color="#ffffff" padding="0px"/>
-        <mj-column padding="5px"/>
-        <mj-text padding="5px" line-height="18px"/>
+        <mj-section background-color="#ffffff" padding="42px"/>
+        <mj-column padding="24px"/>
+        <mj-text padding="13px" line-height="17px"/>
     </mj-attributes>
 </mj-head>
 <mj-body background-color="#4f5d75" width="700px"><mj-section background-color="#4f5d75"><mj-column><mj-text padding="2px"></mj-text></mj-column></mj-section><mj-section ><mj-column width="50%" padding="0" background-color="#ffffff"><mj-text container-background-color="#ffffff"><p><strong>SUPPLIER</strong></p><p>{{fulfiller.name}}</p></mj-text>
