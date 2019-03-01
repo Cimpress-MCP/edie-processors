@@ -81,6 +81,10 @@ function edie2hbsmjml(edieJson) {
     }
 
     let defaultBackground = edieJson.structure.properties.backgroundColor || '#ffffff';
+    let defaultRowPadding = edieJson.structure.properties.defaultRowPadding || '0px';
+    let defaultColumnPadding = edieJson.structure.properties.defaultColumnPadding || '5px';
+    let defaultTextPadding = edieJson.structure.properties.defaultTextPadding || '5px';
+    let defaultTextLineHeight = edieJson.structure.properties.defaultTextLineHeight || '18px';
 
     let mjml = blockToMjml(edieJson.structure, blockToMjml, true);
     let colorClasses = extractColorClasses(mjml);
@@ -108,9 +112,9 @@ function edie2hbsmjml(edieJson) {
       ${styles}
     </mj-style>
     <mj-attributes>
-        <mj-section background-color="${defaultBackground}" padding="0px"/>
-        <mj-column padding="5px"/>
-        <mj-text padding="5px"/>
+        <mj-section background-color="${defaultBackground}" padding="${defaultRowPadding}"/>
+        <mj-column padding="${defaultColumnPadding}"/>
+        <mj-text padding="${defaultTextPadding}" line-height="${defaultTextLineHeight}"/>
     </mj-attributes>
 </mj-head>
 ${mjml}

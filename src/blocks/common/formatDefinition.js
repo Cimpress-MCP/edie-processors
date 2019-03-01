@@ -12,10 +12,23 @@ const EDIE_BLOCK_TYPE = {
 };
 
 const EDIE_PROP_TYPE = {
+    //
+    // Put the property 'as-as' into mj-* element as property (same name)
     ATTRIBUTE: 'attribute',
+    //
+    // Do not add this property into mj-* element attribute
     SKIP: 'skip',
+    //
+    // Add edie property into mj-* element as attribute with different name
+    // See propTranslated() for example usage
     TRANSLATED: 'translated',
+    //
+    // Add the property's value intp mj-*' element's body.
+    // Eg. { .., content: 'xxx', ...}  => <mj-*>xxx</mj-*>
     BODY: 'body',
+    //
+    // Advanced property that needs to computed based on all edie properties
+    // See the definition of 'border' property for example
     COMPUTED: 'computed',
 };
 
@@ -107,6 +120,17 @@ const EDIE_PROPS = {
         emailWidth: propTranslated('width'),
         backgroundColor: propAsSkip(),
         children: propAsBody(),
+        //
+        // These are marked as 'skipped' because of speial handling outside
+        // of the scope of MAIN element. Added here for consistency.
+        defaultTextLineHeight: propAsSkip(),
+        defaultRowPadding: propAsSkip(),
+        defaultColumnPadding: propAsSkip(),
+        defaultTextPadding: propAsSkip(),
+    },
+    [EDIE_BLOCK_TYPE.LOOP]: {
+        // Loop is a special type of element that has no representation as mj element
+        'dummy': propAsSkip(),
     },
 };
 

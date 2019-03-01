@@ -570,8 +570,11 @@ export default {
         'properties': {
             'backgroundColor': '#ffffff',
             'emailBackgroundColor': '#4f5d75',
-            'isPublic': true,
             'emailWidth': '700px',
+            'defaultRowPadding': '42px',
+            'defaultColumnPadding': '24px',
+            'defaultTextPadding': '13px',
+            'defaultTextLineHeight': '17px',
         },
         'parentId': 'main',
     },
