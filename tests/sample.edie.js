@@ -570,7 +570,6 @@ export default {
         'properties': {
             'backgroundColor': '#ffffff',
             'emailBackgroundColor': '#4f5d75',
-            'isPublic': true,
             'emailWidth': '700px',
         },
         'parentId': 'main',
