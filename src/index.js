@@ -110,7 +110,7 @@ function edie2hbsmjml(edieJson) {
     <mj-attributes>
         <mj-section background-color="${defaultBackground}" padding="0px"/>
         <mj-column padding="5px"/>
-        <mj-text padding="5px"/>
+        <mj-text padding="5px" line-height="18px"/>
     </mj-attributes>
 </mj-head>
 ${mjml}
