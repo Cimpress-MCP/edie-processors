@@ -35,7 +35,7 @@ describe('edie2mjml', function() {
         <mj-text padding="13px" line-height="17px"/>
     </mj-attributes>
 </mj-head>
-<mj-body background-color="#4f5d75" width="700px"><mj-section background-color="#4f5d75"><mj-column><mj-text padding="2px"></mj-text></mj-column></mj-section><mj-section ><mj-column width="50%" padding="0" background-color="#ffffff"><mj-text container-background-color="#ffffff"><p><strong>SUPPLIER</strong></p><p>{{fulfiller.name}}</p></mj-text>
+<mj-body background-color="#4f5d75" width="700px"><mj-section ><mj-column width="50%" padding="0" background-color="#ffffff"><mj-text container-background-color="#ffffff"><p><strong>SUPPLIER</strong></p><p>{{fulfiller.name}}</p></mj-text>
 </mj-column>
 <mj-column width="50%" background-color="#ffffff"><mj-text ><p style="text-align:right;"><strong>REASON FOR REQUIREMENT</strong></p><p style="text-align:right;"><strong>Order Number:&nbsp;</strong>{{order.orderId}}</p><p style="text-align:right;">{{order.customs-details.consigneeAddress.country}}</p></mj-text>
 </mj-column>
@@ -96,7 +96,7 @@ describe('edie2mjml', function() {
 </mj-column>
 <mj-column width="33%"></mj-column>
 </mj-section>
-<mj-section background-color="#4f5d75"><mj-column><mj-text padding="2px"></mj-text></mj-column></mj-section></mj-body>
+</mj-body>
 
 </mjml>`;
 

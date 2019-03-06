@@ -2,13 +2,10 @@ import {toMjml} from './common/base';
 import {EDIE_BLOCK_TYPE, EDIE_PROPS} from './common/formatDefinition';
 
 const mainToMjml = (item, blockRenderer) => {
-    //
-    // TODO: Make adding these sections (this one plus the one after the loop) configurable.
-    let items = `<mj-section background-color="${item.properties['emailBackgroundColor']}"><mj-column><mj-text padding="2px"></mj-text></mj-column></mj-section>`;
+    let items = '';
     (item.children || []).forEach((x) => {
         items += blockRenderer(x, blockRenderer, true);
     });
-    items += `<mj-section background-color="${item.properties['emailBackgroundColor']}"><mj-column><mj-text padding="2px"></mj-text></mj-column></mj-section>`;
 
     item.properties.children = items;
 
