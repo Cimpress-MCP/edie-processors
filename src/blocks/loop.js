@@ -1,3 +1,11 @@
+const getLoopSectionEndBlock = (x) => {
+    let ending = x;
+    if (ending.indexOf(' ') !== -1) {
+        ending = ending.split(' ')[0];
+    }
+    return ending;
+};
+
 const loopToMjml = (item, blockRenderer, isTopLevelNode) => {
     let items = '';
     (item.children || []).forEach((x) => {
@@ -8,7 +16,7 @@ const loopToMjml = (item, blockRenderer, isTopLevelNode) => {
 
     return '{{#' + item.properties.loopPath + '}}'
         + items
-        + '{{/' + item.properties.loopPath + '}}';
+        + '{{/' + getLoopSectionEndBlock(item.properties.loopPath) + '}}';
 };
 
 const loopToText = (item, blockRenderer, isTopLevelNode) => {
@@ -22,7 +30,7 @@ const loopToText = (item, blockRenderer, isTopLevelNode) => {
 
     return '{{#' + item.properties.loopPath + '}}\r\n'
         + items
-        + '{{/' + item.properties.loopPath + '}}\r\n'
+        + '{{/' + getLoopSectionEndBlock(item.properties.loopPath) + '}}\r\n'
         + '\r\n';
 };
 
