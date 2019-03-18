@@ -60,10 +60,10 @@ const propertiesToText = (props, keysToIgnore) => {
 
 const encloseInMjmlSection = (item, addtionalSectionProps) => {
     if (!addtionalSectionProps) {
-        return `<mj-section padding="0px"><mj-column padding="0px">${item}</mj-column></mj-section>\r\n`;
+        return `<mj-section padding="0px"><mj-column padding="0px">${item}</mj-column></mj-section>`;
     }
 
-    return `<mj-section padding="0px" ${propertiesToText(addtionalSectionProps)}><mj-column padding="0px">${item}</mj-column></mj-section>\r\n`;
+    return `<mj-section padding="0px" ${propertiesToText(addtionalSectionProps)}><mj-column padding="0px">${item}</mj-column></mj-section>`;
 };
 
 export {

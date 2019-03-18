@@ -103,8 +103,8 @@ describe('edie2mjml', function() {
         expect(mjml).to.contain('.edie-color-p-FFFF00 { color: #FFFF00 }');
         expect(mjml).to.contain('.edie-color-m-FFFF00 { background-color: #FFFF00 }');
 
-        mjml = mjml.replace(/\r/g, '');
-        expectedMjml = expectedMjml.replace(/\r/g, '');
+        mjml = mjml.replace(/\r/g, '').replace(/\n/g, '');
+        expectedMjml = expectedMjml.replace(/\n/g, '').replace(/\r/g, '');
         expect(mjml).to.equal(expectedMjml);
     });
 
