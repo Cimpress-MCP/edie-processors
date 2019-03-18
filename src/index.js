@@ -160,6 +160,7 @@ function createEmptyBlock(type) {
             borderSize: '0px',
             borderColor: 'transparent',
             content: 'Button',
+            padding: '5px',
         };
         break;
 

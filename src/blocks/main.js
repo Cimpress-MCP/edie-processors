@@ -12,10 +12,13 @@ const mainToMjml = (item, blockRenderer) => {
     let wrapper = toMjml('mj-wrapper', {
         'emailBackgroundColor': item.properties.emailBackgroundColor,
         'fullWidth': 'full-width',
+        'padding': item.properties.padding || '0px',
         'children': items,
     }, EDIE_PROPS[EDIE_BLOCK_TYPE.MAIN]);
 
+    // these are used for the wrapper, do not add at the body.
     delete item.properties.emailBackgroundColor;
+    delete item.properties.padding;
 
     item.properties.children = wrapper;
 
