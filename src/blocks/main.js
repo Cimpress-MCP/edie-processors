@@ -9,6 +9,16 @@ const mainToMjml = (item, blockRenderer) => {
 
     item.properties.children = items;
 
+    let wrapper = toMjml('mj-wrapper', {
+        'emailBackgroundColor': item.properties.emailBackgroundColor,
+        'fullWidth': 'full-width',
+        'children': items,
+    }, EDIE_PROPS[EDIE_BLOCK_TYPE.MAIN]);
+
+    delete item.properties.emailBackgroundColor;
+
+    item.properties.children = wrapper;
+
     return toMjml('mj-body', item.properties, EDIE_PROPS[EDIE_BLOCK_TYPE.MAIN]);
 };
 

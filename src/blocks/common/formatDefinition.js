@@ -116,6 +116,7 @@ const EDIE_PROPS = {
         padding: propAsAttribute(),
     },
     [EDIE_BLOCK_TYPE.MAIN]: {
+        fullWidth: propTranslated('full-width'),
         emailBackgroundColor: propTranslated('background-color'),
         emailWidth: propTranslated('width'),
         backgroundColor: propAsSkip(),
