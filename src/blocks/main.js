@@ -18,7 +18,6 @@ const mainToMjml = (item, blockRenderer) => {
         }, EDIE_PROPS[EDIE_BLOCK_TYPE.MAIN]);
 
         // these are used for the wrapper, do not add at the body.
-        delete item.properties.emailBackgroundColor;
         delete item.properties.padding;
 
         item.properties.children = wrapper;

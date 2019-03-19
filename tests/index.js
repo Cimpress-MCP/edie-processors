@@ -138,7 +138,7 @@ describe('edie2mjml', function() {
         <mj-text padding="13px" line-height="17px"/>
     </mj-attributes>
 </mj-head>
-<mj-body width="700px">
+<mj-body background-color="#4f5d75" width="700px">
 <mj-wrapper padding="0px" full-width="full-width" background-color="#4f5d75">
 <mj-section ><mj-column width="50%" padding="0" background-color="#ffffff"><mj-text container-background-color="#ffffff"><p><strong>SUPPLIER</strong></p><p>{{fulfiller.name}}</p></mj-text>
 </mj-column>
