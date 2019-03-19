@@ -4,9 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.0.8] - 2019.03.18
+### Changed
+- Restrict additional mj-wrapper to only mail elements with px-based width
+
 ## [1.0.7] - 2019.03.18
 ### Changed
 - Add additional mj-wrapper as only child of mj-body to handle email background color
+- Add default 5px for buttons (at block creation time)
+- Add default 0px padding for body wrapper
+- Add support for 'main' padding
 
 ## [1.0.6] - 2019.03.18
 ### Changed
