@@ -46,6 +46,24 @@ describe('image', function() {
     });
 
     describe('imageToMjml', function() {
+
+        it('with condition, renders correctly', function() {
+            const imageItem = {
+                properties: {
+                    src: 'abc:{{x.asd}}',
+                    alt: 'image of a horse',
+                    href: 'route_to_horse',
+                    width: '100%',
+                    borderSize: '0px',
+                    borderColor: '#4f5d75',
+                    condition: 'x abc',
+                    conditionAlt: 'n/a',
+                },
+            };
+            const mjml = imageToMjml(imageItem);
+            equalIgnoringNewLines(mjml, '{{#x}}<mj-image src="abc:{{x.asd}}" href="route_to_horse" alt="image of a horse" width="100%" border="0px solid #4f5d75"/>{{else}}<mj-text >n/a</mj-text>{{/x}');
+        });
+
         it('mjml generated correctly', function() {
             const imageItem = {
                 properties: {
