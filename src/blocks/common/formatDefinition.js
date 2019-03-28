@@ -78,6 +78,8 @@ const EDIE_PROPS = {
         width: propAsAttribute(),
         borderSize: propAsSkip(),
         borderColor: propAsSkip(),
+        condition: propAsSkip(),
+        conditionAlt: propAsSkip(),
         backgroundColor: propTranslated('container-background-color'),
         padding: propAsAttribute(),
         border: propAsComputed(computeBorder),
