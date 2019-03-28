@@ -61,7 +61,7 @@ describe('image', function() {
                 },
             };
             const mjml = imageToMjml(imageItem);
-            equalIgnoringNewLines(mjml, '{{#x}}<mj-image src="abc:{{x.asd}}" href="route_to_horse" alt="image of a horse" width="100%" border="0px solid #4f5d75"/>{{else}}<mj-text >n/a</mj-text>{{/x}');
+            equalIgnoringNewLines(mjml, '{{#x abc}}<mj-image src="abc:{{x.asd}}" href="route_to_horse" alt="image of a horse" width="100%" border="0px solid #4f5d75"/>{{else}}<mj-text >n/a</mj-text>{{/x}');
         });
 
         it('mjml generated correctly', function() {
