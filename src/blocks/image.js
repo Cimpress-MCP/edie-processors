@@ -5,16 +5,11 @@ const imageToMjml = (item, blockRenderer, isTopLevelNode) => {
     let mjImage = toMjml('mj-image', item.properties, EDIE_PROPS[EDIE_BLOCK_TYPE.IMAGE]);
 
     if (item.properties.condition) {
-        const openBlock = item.properties.condition;
-        const closeBlock = item.properties.condition.indexOf(' ') >= 0
-            ? item.properties.condition.split(' ')[0]
-            : item.properties.condition;
-
         const mjText = toMjml('mj-text', {
             content: item.properties.conditionAlt,
         }, EDIE_PROPS[EDIE_BLOCK_TYPE.TEXT]);
 
-        mjImage = `{{#${openBlock}}}${mjImage}{{else}}${mjText}{{/${closeBlock}}`;
+        mjImage = `{{#if ${item.properties.condition}}}${mjImage}{{else}}${mjText}{{/if}`;
     }
 
     // mj-image NOT allowed in mj-body, so in case this is what EDIE
