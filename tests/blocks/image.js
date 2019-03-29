@@ -56,12 +56,12 @@ describe('image', function() {
                     width: '100%',
                     borderSize: '0px',
                     borderColor: '#4f5d75',
-                    condition: 'x abc',
+                    condition: 'abc',
                     conditionAlt: 'n/a',
                 },
             };
             const mjml = imageToMjml(imageItem);
-            equalIgnoringNewLines(mjml, '{{#x abc}}<mj-image src="abc:{{x.asd}}" href="route_to_horse" alt="image of a horse" width="100%" border="0px solid #4f5d75"/>{{else}}<mj-text >n/a</mj-text>{{/x}');
+            equalIgnoringNewLines(mjml, '{{#if abc}}<mj-image src="abc:{{x.asd}}" href="route_to_horse" alt="image of a horse" width="100%" border="0px solid #4f5d75"/>{{else}}<mj-text >n/a</mj-text>{{/if}}');
         });
 
         it('mjml generated correctly', function() {

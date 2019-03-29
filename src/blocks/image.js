@@ -9,7 +9,7 @@ const imageToMjml = (item, blockRenderer, isTopLevelNode) => {
             content: item.properties.conditionAlt,
         }, EDIE_PROPS[EDIE_BLOCK_TYPE.TEXT]);
 
-        mjImage = `{{#if ${item.properties.condition}}}${mjImage}{{else}}${mjText}{{/if}`;
+        mjImage = `{{#if ${item.properties.condition}}}${mjImage}{{else}}${mjText}{{/if}}`;
     }
 
     // mj-image NOT allowed in mj-body, so in case this is what EDIE
