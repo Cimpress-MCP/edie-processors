@@ -8,7 +8,7 @@ import {buttonToMjml, buttonToText} from './blocks/button';
 import {loopToMjml, loopToText} from './blocks/loop';
 import {vspacerToMjml, vspacerToText} from './blocks/vspacer';
 import {imageToMjml, imageToText} from './blocks/image';
-import {rawhtmlToMjml, rawhtmlToText} from './blocks/rawhtml';
+import {rawToMjml, rawToText} from './blocks/raw';
 
 const blockToMjml = (item, childrenRenderer, isTopLevelNode) => {
     let renderer = null;
@@ -37,8 +37,8 @@ const blockToMjml = (item, childrenRenderer, isTopLevelNode) => {
     case EDIE_BLOCK_TYPE.IMAGE:
         renderer = imageToMjml;
         break;
-    case EDIE_BLOCK_TYPE.RAWHTML:
-        renderer = rawhtmlToMjml;
+    case EDIE_BLOCK_TYPE.RAW:
+        renderer = rawToMjml;
         break;
     default:
         return `Conversion of ${item.type} to MJML not implemented.`;
@@ -73,8 +73,8 @@ const blockToText = (item, childrenRenderer, isTopLevelNode) => {
     case EDIE_BLOCK_TYPE.IMAGE:
         renderer = imageToText;
         break;
-    case EDIE_BLOCK_TYPE.RAWHTML:
-        renderer = rawhtmlToText;
+    case EDIE_BLOCK_TYPE.RAW:
+        renderer = rawToText;
         break;
     default:
         return `Conversion of ${item.type} to TEXT not implemented.`;
@@ -209,7 +209,7 @@ function createEmptyBlock(type) {
             borderColor: '#ffffff',
         };
         break;
-    case EDIE_BLOCK_TYPE.RAWHTML:
+    case EDIE_BLOCK_TYPE.RAW:
         props = {
         };
         break;
