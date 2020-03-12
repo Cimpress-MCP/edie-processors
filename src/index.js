@@ -8,6 +8,7 @@ import {buttonToMjml, buttonToText} from './blocks/button';
 import {loopToMjml, loopToText} from './blocks/loop';
 import {vspacerToMjml, vspacerToText} from './blocks/vspacer';
 import {imageToMjml, imageToText} from './blocks/image';
+import {rawToMjml, rawToText} from './blocks/raw';
 
 const blockToMjml = (item, childrenRenderer, isTopLevelNode) => {
     let renderer = null;
@@ -35,6 +36,9 @@ const blockToMjml = (item, childrenRenderer, isTopLevelNode) => {
         break;
     case EDIE_BLOCK_TYPE.IMAGE:
         renderer = imageToMjml;
+        break;
+    case EDIE_BLOCK_TYPE.RAW:
+        renderer = rawToMjml;
         break;
     default:
         return `Conversion of ${item.type} to MJML not implemented.`;
@@ -68,6 +72,9 @@ const blockToText = (item, childrenRenderer, isTopLevelNode) => {
         break;
     case EDIE_BLOCK_TYPE.IMAGE:
         renderer = imageToText;
+        break;
+    case EDIE_BLOCK_TYPE.RAW:
+        renderer = rawToText;
         break;
     default:
         return `Conversion of ${item.type} to TEXT not implemented.`;
@@ -103,6 +110,7 @@ function edie2hbsmjml(edieJson) {
       .text-small { font-size: .85em; } 
       .text-big { font-size: 1.4em; } 
       .text-huge { font-size: 1.8em; }
+      .page-break { page-break-after: always; }
       figure.image { margin: 0; }
       figure.image img { width: 100%; margin: 0; }
       figure.image.image-style-align-left { margin-left: 0; }
@@ -201,7 +209,7 @@ function createEmptyBlock(type) {
             borderColor: '#ffffff',
         };
         break;
-    case EDIE_BLOCK_TYPE.RAWHTML:
+    case EDIE_BLOCK_TYPE.RAW:
         props = {
         };
         break;

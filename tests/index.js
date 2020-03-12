@@ -21,6 +21,7 @@ describe('edie2mjml', function() {
       .text-small { font-size: .85em; } 
       .text-big { font-size: 1.4em; } 
       .text-huge { font-size: 1.8em; }
+      .page-break { page-break-after: always; }
       figure.image { margin: 0; }
       figure.image img { width: 100%; margin: 0; }
       figure.image.image-style-align-left { margin-left: 0; }
@@ -38,7 +39,7 @@ describe('edie2mjml', function() {
     </mj-attributes>
 </mj-head>
 <mj-body background-color="#4f5d75" width="80%">
-<mj-section ><mj-column width="50%" padding="0" background-color="#ffffff"><mj-text container-background-color="#ffffff"><p><strong>SUPPLIER</strong></p><p>{{fulfiller.name}}</p></mj-text>
+<mj-section ><mj-column width="50%" padding="0" background-color="#ffffff"><mj-text container-background-color="#ffffff"><p><strong>SUPPLIER</strong></p><p>{{fulfiller.name}}</p></mj-text><mj-raw ><div class=page-break>asdas</div></mj-raw>
 </mj-column>
 <mj-column width="50%" background-color="#ffffff"><mj-text ><p style="text-align:right;"><strong>REASON FOR REQUIREMENT</strong></p><p style="text-align:right;"><strong>Order Number:&nbsp;</strong>{{order.orderId}}</p><p style="text-align:right;">{{order.customs-details.consigneeAddress.country}}</p></mj-text>
 </mj-column>
@@ -122,6 +123,7 @@ describe('edie2mjml', function() {
       .text-small { font-size: .85em; } 
       .text-big { font-size: 1.4em; } 
       .text-huge { font-size: 1.8em; }
+      .page-break { page-break-after: always; }
       figure.image { margin: 0; }
       figure.image img { width: 100%; margin: 0; }
       figure.image.image-style-align-left { margin-left: 0; }
@@ -140,7 +142,7 @@ describe('edie2mjml', function() {
 </mj-head>
 <mj-body background-color="#4f5d75" width="700px">
 <mj-wrapper padding="0px" full-width="full-width" background-color="#4f5d75">
-<mj-section ><mj-column width="50%" padding="0" background-color="#ffffff"><mj-text container-background-color="#ffffff"><p><strong>SUPPLIER</strong></p><p>{{fulfiller.name}}</p></mj-text>
+<mj-section ><mj-column width="50%" padding="0" background-color="#ffffff"><mj-text container-background-color="#ffffff"><p><strong>SUPPLIER</strong></p><p>{{fulfiller.name}}</p></mj-text><mj-raw ><div class=page-break>asdas</div></mj-raw>
 </mj-column>
 <mj-column width="50%" background-color="#ffffff"><mj-text ><p style="text-align:right;"><strong>REASON FOR REQUIREMENT</strong></p><p style="text-align:right;"><strong>Order Number:&nbsp;</strong>{{order.orderId}}</p><p style="text-align:right;">{{order.customs-details.consigneeAddress.country}}</p></mj-text>
 </mj-column>

@@ -1,19 +1,19 @@
 import {equalIgnoringNewLines} from '../helpers';
-import {rawhtmlToMjml} from '../../src/blocks/rawhtml';
+import {rawToMjml} from '../../src/blocks/raw';
 
 const invalidRenderer = () => {
     throw new Error('Renderer should not be called when rendering buttons');
 };
 
-describe('rawhtml', function() {
-    const rawhtml = {
+describe('raw', function() {
+    const raw = {
         'properties': {
             'content': '<div class="asd">asd</div>',
-        }
+        },
     };
 
     it('rawhtnlToMjml, no children, mjml generated correctly', function() {
-        const mjml = rawhtmlToMjml(rawhtml, invalidRenderer, false );
+        const mjml = rawToMjml(raw, invalidRenderer, false );
         equalIgnoringNewLines(mjml, '<mj-raw ><div class="asd">asd</div></mj-raw>');
     });
 });

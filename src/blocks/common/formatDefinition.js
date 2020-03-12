@@ -9,7 +9,7 @@ const EDIE_BLOCK_TYPE = {
     LOOP: 'loop',
     VSPACER: 'vspacer',
     IMAGE: 'image',
-    RAWHTML: 'rawhtml',
+    RAW: 'raw',
 };
 
 const EDIE_PROP_TYPE = {
@@ -137,7 +137,7 @@ const EDIE_PROPS = {
         // Loop is a special type of element that has no representation as mj element
         'dummy': propAsSkip(),
     },
-    [EDIE_BLOCK_TYPE.RAWHTML]: {
+    [EDIE_BLOCK_TYPE.RAW]: {
         content: propAsBody(),
     },
 };

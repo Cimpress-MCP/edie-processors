@@ -23,6 +23,14 @@ export default {
                                 },
                                 'parentId': '6909c3e0-23f8-11e9-ab78-270edb21e50d',
                             },
+                            {
+                                'id': '6eb6b500-23f8-11e9-ab78-270edb21e522',
+                                'type': 'raw',
+                                'properties': {
+                                    'content': '<div class=page-break>asdas</div>',
+                                },
+                                'parentId': '6909c3e0-23f8-11e9-ab78-270edb21e50d',
+                            }
                         ],
                         'type': 'column',
                         'properties': {
