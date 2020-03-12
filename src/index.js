@@ -201,6 +201,10 @@ function createEmptyBlock(type) {
             borderColor: '#ffffff',
         };
         break;
+    case EDIE_BLOCK_TYPE.RAWHTML:
+        props = {
+        };
+        break;
 
     default:
         break;
