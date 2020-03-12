@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Added support for mj-raw
 
+## [1.0.13] - 2019.09.10
 ## [1.0.12] - 2019.06.06
 ### Updated
 - Updated dependencies for security reasons
