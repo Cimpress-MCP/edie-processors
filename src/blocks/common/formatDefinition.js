@@ -10,6 +10,7 @@ const EDIE_BLOCK_TYPE = {
     VSPACER: 'vspacer',
     IMAGE: 'image',
     RAW: 'raw',
+    MJML: 'mjml',
 };
 
 const EDIE_PROP_TYPE = {

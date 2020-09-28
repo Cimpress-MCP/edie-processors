@@ -1,5 +1,5 @@
 export default {
-    'formatVersion': 'v1.0',
+    'formatVersion': 'v1.1',
     'mimeHeaders': {
         'to': 'aaa@bbb.com',
         'subject': 'xx sb',
@@ -30,7 +30,7 @@ export default {
                                     'content': '<div class=page-break>asdas</div>',
                                 },
                                 'parentId': '6909c3e0-23f8-11e9-ab78-270edb21e50d',
-                            }
+                            },
                         ],
                         'type': 'column',
                         'properties': {
@@ -81,6 +81,15 @@ export default {
                 'properties': {
                     'content': '<p><strong>EXPECTED SHIP DATE:</strong></p><p><span type="placeholder" content="{{moment (moment createdDate add=60480000) \'DD-MMM-YYYY\'}}">&nbsp;</span></p>',
                     'backgroundColor': '#ffffff',
+                },
+                'parentId': 'main',
+            },
+            {
+                'id': '9d28f740-23f8-11e9-ab78-270edb21e50d',
+                'children': null,
+                'type': 'mjml',
+                'properties': {
+                    'content': '<mj-text font-size="20px" color="#F45E43" font-family="helvetica">My MJML block</mj-text>',
                 },
                 'parentId': 'main',
             },

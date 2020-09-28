@@ -48,6 +48,7 @@ describe('edie2mjml', function() {
 </mj-column></mj-section>
 <mj-section padding="0px" background-color="#ffffff"><mj-column padding="0px"><mj-text container-background-color="#ffffff"><p><strong>EXPECTED SHIP DATE:</strong></p><p>{{moment (moment createdDate add=60480000) 'DD-MMM-YYYY'}}</p></mj-text>
 </mj-column></mj-section>
+<mj-section padding="0px"><mj-column padding="0px"><mj-text font-size="20px" color="#F45E43" font-family="helvetica">My MJML block</mj-text></mj-column></mj-section>
 <mj-section ><mj-column width="40%"><mj-text ><p><strong>PRODUCT</strong></p></mj-text>
 </mj-column>
 <mj-column width="10%"><mj-text ><p style="text-align:right;"><strong>QUANTITY</strong></p></mj-text>
@@ -151,6 +152,7 @@ describe('edie2mjml', function() {
 </mj-column></mj-section>
 <mj-section padding="0px" background-color="#ffffff"><mj-column padding="0px"><mj-text container-background-color="#ffffff"><p><strong>EXPECTED SHIP DATE:</strong></p><p>{{moment (moment createdDate add=60480000) 'DD-MMM-YYYY'}}</p></mj-text>
 </mj-column></mj-section>
+<mj-section padding="0px"><mj-column padding="0px"><mj-text font-size="20px" color="#F45E43" font-family="helvetica">My MJML block</mj-text></mj-column></mj-section>
 <mj-section ><mj-column width="40%"><mj-text ><p><strong>PRODUCT</strong></p></mj-text>
 </mj-column>
 <mj-column width="10%"><mj-text ><p style="text-align:right;"><strong>QUANTITY</strong></p></mj-text>

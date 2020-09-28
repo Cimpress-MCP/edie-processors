@@ -8,7 +8,9 @@ import {buttonToMjml, buttonToText} from './blocks/button';
 import {loopToMjml, loopToText} from './blocks/loop';
 import {vspacerToMjml, vspacerToText} from './blocks/vspacer';
 import {imageToMjml, imageToText} from './blocks/image';
+import {mjmlToText, mjmlToMjml} from './blocks/mjml';
 import {rawToMjml, rawToText} from './blocks/raw';
+import {currentVersion, supportedVersions} from './versions';
 
 const blockToMjml = (item, childrenRenderer, isTopLevelNode) => {
     let renderer = null;
@@ -36,6 +38,9 @@ const blockToMjml = (item, childrenRenderer, isTopLevelNode) => {
         break;
     case EDIE_BLOCK_TYPE.IMAGE:
         renderer = imageToMjml;
+        break;
+    case EDIE_BLOCK_TYPE.MJML:
+        renderer = mjmlToMjml;
         break;
     case EDIE_BLOCK_TYPE.RAW:
         renderer = rawToMjml;
@@ -73,6 +78,9 @@ const blockToText = (item, childrenRenderer, isTopLevelNode) => {
     case EDIE_BLOCK_TYPE.IMAGE:
         renderer = imageToText;
         break;
+    case EDIE_BLOCK_TYPE.MJML:
+        renderer = mjmlToText;
+        break;
     case EDIE_BLOCK_TYPE.RAW:
         renderer = rawToText;
         break;
@@ -83,7 +91,7 @@ const blockToText = (item, childrenRenderer, isTopLevelNode) => {
 };
 
 function edie2hbsmjml(edieJson) {
-    if (edieJson.formatVersion !== 'v1.0') {
+    if (!supportedVersions.includes(edieJson.formatVersion)) {
         return 'Not supported version!';
     }
 
@@ -130,7 +138,7 @@ ${mjml}
 }
 
 function edie2hbstext(edieJson) {
-    if (edieJson.formatVersion !== 'v1.0') {
+    if (!supportedVersions.includes(edieJson.formatVersion)) {
         return 'Not supported version!';
     }
 
@@ -138,12 +146,12 @@ function edie2hbstext(edieJson) {
 }
 
 const createEmptyFormat = (v) => {
-    if (v && v !== 'v1.0') {
+    if (!supportedVersions.includes(v)) {
         return null;
     }
 
     return {
-        formatVersion: v || 'v1.0',
+        formatVersion: v || currentVersion,
         mimeHeaders: {
             to: 'a@b.com',
             subject: 'sample email',
@@ -209,6 +217,7 @@ function createEmptyBlock(type) {
             borderColor: '#ffffff',
         };
         break;
+    case EDIE_BLOCK_TYPE.MJML:
     case EDIE_BLOCK_TYPE.RAW:
         props = {
         };
