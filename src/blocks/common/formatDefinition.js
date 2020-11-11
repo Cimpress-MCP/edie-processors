@@ -140,7 +140,7 @@ const EDIE_PROPS = {
         defaultRowPadding: propAsSkip(),
         defaultColumnPadding: propAsSkip(),
         defaultTextPadding: propAsSkip(),
-        additionalMjHeadContent: propAsSkip()
+        additionalMjHeadContent: propAsSkip(),
     },
     [EDIE_BLOCK_TYPE.LOOP]: {
         // Loop is a special type of element that has no representation as mj element

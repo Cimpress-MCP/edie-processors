@@ -102,7 +102,7 @@ function computeDefaultMjAttributes(edieJson) {
         <mj-column padding="${defaultColumnPadding}"/>
         <mj-text padding="${defaultTextPadding}" line-height="${defaultTextLineHeight}"/>
     </mj-attributes>
-`
+`;
 }
 
 function computeDefaultMjStyles(mjml) {
@@ -137,7 +137,7 @@ function computeMjHead(edieJson, mjml, additionalMjHeadContent) {
         ${computeDefaultMjStyles(mjml)}
         ${computeDefaultMjAttributes(edieJson)}
         ${additionalMjHeadContent}
-    </mj-head>`
+    </mj-head>`;
 }
 
 function edie2hbsmjml(edieJson) {
@@ -146,7 +146,7 @@ function edie2hbsmjml(edieJson) {
     }
 
     let mjml = blockToMjml(edieJson.structure, blockToMjml, true);
-    let mjHead = computeMjHead(edieJson, mjml, edieJson.structure.properties.additionalMjHeadContent)
+    let mjHead = computeMjHead(edieJson, mjml, edieJson.structure.properties.additionalMjHeadContent);
 
     return `<mjml>${mjHead}${mjml}</mjml>`;
 }
@@ -175,8 +175,8 @@ const createEmptyFormat = (v) => {
             type: 'main',
             children: [],
             properties: {
-                additionalMjHeadContent: ''
-            }
+                additionalMjHeadContent: '',
+            },
         },
     };
 };
