@@ -85,15 +85,6 @@ export default {
                 'parentId': 'main',
             },
             {
-                'id': '9d28f740-23f8-11e9-ab78-270edb21e50d',
-                'children': null,
-                'type': 'mjml',
-                'properties': {
-                    'content': '<mj-text font-size="20px" color="#F45E43" font-family="helvetica">My MJML block</mj-text>',
-                },
-                'parentId': 'main',
-            },
-            {
                 'id': 'bad20b60-23f8-11e9-ab78-270edb21e50d',
                 'children': [
                     {

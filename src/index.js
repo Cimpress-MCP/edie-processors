@@ -136,7 +136,7 @@ function computeMjHead(edieJson, mjml, additionalMjHeadContent) {
     return `<mj-head>
         ${computeDefaultMjStyles(mjml)}
         ${computeDefaultMjAttributes(edieJson)}
-        ${additionalMjHeadContent}
+        ${additionalMjHeadContent ? additionalMjHeadContent : ''}
     </mj-head>`;
 }
 
@@ -148,7 +148,10 @@ function edie2hbsmjml(edieJson) {
     let mjml = blockToMjml(edieJson.structure, blockToMjml, true);
     let mjHead = computeMjHead(edieJson, mjml, edieJson.structure.properties.additionalMjHeadContent);
 
-    return `<mjml>${mjHead}${mjml}</mjml>`;
+    return `<mjml>
+${mjHead}
+${mjml}
+</mjml>`;
 }
 
 function edie2hbstext(edieJson) {

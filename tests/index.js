@@ -16,29 +16,26 @@ describe('edie2mjml', function() {
         let mjml = edie2hbsmjml(edie);
         let expectedMjml = `<mjml>
 <mj-head>
-    <mj-style inline="inline">
-      .text-tiny { font-size: .7em; } 
-      .text-small { font-size: .85em; } 
-      .text-big { font-size: 1.4em; } 
-      .text-huge { font-size: 1.8em; }
-      .page-break { page-break-after: always; }
-      figure.image { margin: 0; }
-      figure.image img { width: 100%; margin: 0; }
-      figure.image.image-style-align-left { margin-left: 0; }
-      figure.image.image-style-align-left img { max-width: 50%; float: left; margin-right: 1.5em; }
-      figure.image.image-style-align-right { margin-right: 0; }
-      figure.image.image-style-align-right img { max-width: 50%; float: right; margin-left: 1.5em; }
-            .edie-color-p-FFFF00 { color: #FFFF00 }
+        <mj-style inline="inline">
+        .text-tiny { font-size: .7em; } 
+       .text-small { font-size: .85em; } 
+       .text-big { font-size: 1.4em; } 
+       .text-huge { font-size: 1.8em; }
+        .page-break { page-break-after: always; }
+        figure.image { margin: 0; }
+        figure.image img { width: 100%; margin: 0; }
+        figure.image.image-style-align-left { margin-left: 0; }
+        figure.image.image-style-align-left img { max-width: 50%; float: left; margin-right: 1.5em; }
+        figure.image.image-style-align-right { margin-right: 0; }
+        figure.image.image-style-align-right img { max-width: 50%; float: right; margin-left: 1.5em; }
+              .edie-color-p-FFFF00 { color: #FFFF00 }
       .edie-color-m-FFFF00 { background-color: #FFFF00 }
-
     </mj-style>
-    <mj-attributes>
+        <mj-attributes>
         <mj-section background-color="#ffffff" padding="42px"/>
         <mj-column padding="24px"/>
         <mj-text padding="13px" line-height="17px"/>
-    </mj-attributes>
-</mj-head>
-<mj-body background-color="#4f5d75" width="80%">
+    </mj-attributes>            </mj-head><mj-body background-color="#4f5d75" width="80%">
 <mj-section ><mj-column width="50%" padding="0" background-color="#ffffff"><mj-text container-background-color="#ffffff"><p><strong>SUPPLIER</strong></p><p>{{fulfiller.name}}</p></mj-text><mj-raw ><div class=page-break>asdas</div></mj-raw>
 </mj-column>
 <mj-column width="50%" background-color="#ffffff"><mj-text ><p style="text-align:right;"><strong>REASON FOR REQUIREMENT</strong></p><p style="text-align:right;"><strong>Order Number:&nbsp;</strong>{{order.orderId}}</p><p style="text-align:right;">{{order.customs-details.consigneeAddress.country}}</p></mj-text>
@@ -48,7 +45,6 @@ describe('edie2mjml', function() {
 </mj-column></mj-section>
 <mj-section padding="0px" background-color="#ffffff"><mj-column padding="0px"><mj-text container-background-color="#ffffff"><p><strong>EXPECTED SHIP DATE:</strong></p><p>{{moment (moment createdDate add=60480000) 'DD-MMM-YYYY'}}</p></mj-text>
 </mj-column></mj-section>
-<mj-section padding="0px"><mj-column padding="0px"><mj-text font-size="20px" color="#F45E43" font-family="helvetica">My MJML block</mj-text></mj-column></mj-section>
 <mj-section ><mj-column width="40%"><mj-text ><p><strong>PRODUCT</strong></p></mj-text>
 </mj-column>
 <mj-column width="10%"><mj-text ><p style="text-align:right;"><strong>QUANTITY</strong></p></mj-text>
@@ -119,29 +115,26 @@ describe('edie2mjml', function() {
 
         let expectedMjml = `<mjml>
 <mj-head>
-    <mj-style inline="inline">
-      .text-tiny { font-size: .7em; } 
-      .text-small { font-size: .85em; } 
-      .text-big { font-size: 1.4em; } 
-      .text-huge { font-size: 1.8em; }
-      .page-break { page-break-after: always; }
-      figure.image { margin: 0; }
-      figure.image img { width: 100%; margin: 0; }
-      figure.image.image-style-align-left { margin-left: 0; }
-      figure.image.image-style-align-left img { max-width: 50%; float: left; margin-right: 1.5em; }
-      figure.image.image-style-align-right { margin-right: 0; }
-      figure.image.image-style-align-right img { max-width: 50%; float: right; margin-left: 1.5em; }
-            .edie-color-p-FFFF00 { color: #FFFF00 }
+        <mj-style inline="inline">
+        .text-tiny { font-size: .7em; } 
+       .text-small { font-size: .85em; } 
+       .text-big { font-size: 1.4em; } 
+       .text-huge { font-size: 1.8em; }
+        .page-break { page-break-after: always; }
+        figure.image { margin: 0; }
+        figure.image img { width: 100%; margin: 0; }
+        figure.image.image-style-align-left { margin-left: 0; }
+        figure.image.image-style-align-left img { max-width: 50%; float: left; margin-right: 1.5em; }
+        figure.image.image-style-align-right { margin-right: 0; }
+        figure.image.image-style-align-right img { max-width: 50%; float: right; margin-left: 1.5em; }
+              .edie-color-p-FFFF00 { color: #FFFF00 }
       .edie-color-m-FFFF00 { background-color: #FFFF00 }
-
     </mj-style>
-    <mj-attributes>
+        <mj-attributes>
         <mj-section background-color="#ffffff" padding="42px"/>
         <mj-column padding="24px"/>
         <mj-text padding="13px" line-height="17px"/>
-    </mj-attributes>
-</mj-head>
-<mj-body background-color="#4f5d75" width="700px">
+    </mj-attributes>            </mj-head><mj-body background-color="#4f5d75" width="700px">
 <mj-wrapper padding="0px" full-width="full-width" background-color="#4f5d75">
 <mj-section ><mj-column width="50%" padding="0" background-color="#ffffff"><mj-text container-background-color="#ffffff"><p><strong>SUPPLIER</strong></p><p>{{fulfiller.name}}</p></mj-text><mj-raw ><div class=page-break>asdas</div></mj-raw>
 </mj-column>
@@ -152,7 +145,6 @@ describe('edie2mjml', function() {
 </mj-column></mj-section>
 <mj-section padding="0px" background-color="#ffffff"><mj-column padding="0px"><mj-text container-background-color="#ffffff"><p><strong>EXPECTED SHIP DATE:</strong></p><p>{{moment (moment createdDate add=60480000) 'DD-MMM-YYYY'}}</p></mj-text>
 </mj-column></mj-section>
-<mj-section padding="0px"><mj-column padding="0px"><mj-text font-size="20px" color="#F45E43" font-family="helvetica">My MJML block</mj-text></mj-column></mj-section>
 <mj-section ><mj-column width="40%"><mj-text ><p><strong>PRODUCT</strong></p></mj-text>
 </mj-column>
 <mj-column width="10%"><mj-text ><p style="text-align:right;"><strong>QUANTITY</strong></p></mj-text>
