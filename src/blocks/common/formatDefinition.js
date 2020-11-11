@@ -127,12 +127,13 @@ const EDIE_PROPS = {
         backgroundColor: propAsSkip(),
         children: propAsBody(),
         //
-        // These are marked as 'skipped' because of speial handling outside
+        // These are marked as 'skipped' because of special handling outside
         // of the scope of MAIN element. Added here for consistency.
         defaultTextLineHeight: propAsSkip(),
         defaultRowPadding: propAsSkip(),
         defaultColumnPadding: propAsSkip(),
         defaultTextPadding: propAsSkip(),
+        additionalMjHeadContent: propAsSkip()
     },
     [EDIE_BLOCK_TYPE.LOOP]: {
         // Loop is a special type of element that has no representation as mj element

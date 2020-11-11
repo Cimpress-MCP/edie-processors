@@ -90,18 +90,22 @@ const blockToText = (item, childrenRenderer, isTopLevelNode) => {
     return renderer(item, childrenRenderer, isTopLevelNode);
 };
 
-function edie2hbsmjml(edieJson) {
-    if (!supportedVersions.includes(edieJson.formatVersion)) {
-        return 'Not supported version!';
-    }
-
+function computeDefaultMjAttributes(edieJson) {
     let defaultBackground = edieJson.structure.properties.backgroundColor || '#ffffff';
     let defaultRowPadding = edieJson.structure.properties.defaultRowPadding || '0px';
     let defaultColumnPadding = edieJson.structure.properties.defaultColumnPadding || '5px';
     let defaultTextPadding = edieJson.structure.properties.defaultTextPadding || '5px';
-    let defaultTextLineHeight = edieJson.structure.properties.defaultTextLineHeight || '18px';
+    let defaultTextLineHeight = edieJson.structure.properties.c || '18px';
 
-    let mjml = blockToMjml(edieJson.structure, blockToMjml, true);
+    return `<mj-attributes>
+        <mj-section background-color="${defaultBackground}" padding="${defaultRowPadding}"/>
+        <mj-column padding="${defaultColumnPadding}"/>
+        <mj-text padding="${defaultTextPadding}" line-height="${defaultTextLineHeight}"/>
+    </mj-attributes>
+`
+}
+
+function computeDefaultMjStyles(mjml) {
     let colorClasses = extractColorClasses(mjml);
     let styles = '';
     Object.keys(colorClasses.pen).forEach((penClass) => {
@@ -111,30 +115,40 @@ function edie2hbsmjml(edieJson) {
         styles += `      .${markerClass} { background-color: #${colorClasses.marker[markerClass]} }\r\n`;
     });
 
-    return `<mjml>
-<mj-head>
-    <mj-style inline="inline">
-      .text-tiny { font-size: .7em; } 
-      .text-small { font-size: .85em; } 
-      .text-big { font-size: 1.4em; } 
-      .text-huge { font-size: 1.8em; }
-      .page-break { page-break-after: always; }
-      figure.image { margin: 0; }
-      figure.image img { width: 100%; margin: 0; }
-      figure.image.image-style-align-left { margin-left: 0; }
-      figure.image.image-style-align-left img { max-width: 50%; float: left; margin-right: 1.5em; }
-      figure.image.image-style-align-right { margin-right: 0; }
-      figure.image.image-style-align-right img { max-width: 50%; float: right; margin-left: 1.5em; }
-      ${styles}
+    return `<mj-style inline="inline">
+        .text-tiny { font-size: .7em; }
+        .text-small { font-size: .85em; }
+        .text-big { font-size: 1.4em; }
+        .text-huge { font-size: 1.8em; }
+        .page-break { page-break-after: always; }
+        figure.image { margin: 0; }
+        figure.image img { width: 100%; margin: 0; }
+        figure.image.image-style-align-left { margin-left: 0; }
+        figure.image.image-style-align-left img { max-width: 50%; float: left; margin-right: 1.5em; }
+        figure.image.image-style-align-right { margin-right: 0; }
+        figure.image.image-style-align-right img { max-width: 50%; float: right; margin-left: 1.5em; }
+        ${styles}
     </mj-style>
-    <mj-attributes>
-        <mj-section background-color="${defaultBackground}" padding="${defaultRowPadding}"/>
-        <mj-column padding="${defaultColumnPadding}"/>
-        <mj-text padding="${defaultTextPadding}" line-height="${defaultTextLineHeight}"/>
-    </mj-attributes>
-</mj-head>
-${mjml}
-</mjml>`;
+`;
+}
+
+function computeMjHead(edieJson, mjml, additionalMjHeadContent) {
+    return `<mj-head>
+        ${computeDefaultMjStyles(mjml)}
+        ${computeDefaultMjAttributes(edieJson)}
+        ${additionalMjHeadContent}
+    </mj-head>`
+}
+
+function edie2hbsmjml(edieJson) {
+    if (!supportedVersions.includes(edieJson.formatVersion)) {
+        return 'Not supported version!';
+    }
+
+    let mjml = blockToMjml(edieJson.structure, blockToMjml, true);
+    let mjHead = computeMjHead(edieJson, mjml, edieJson.structure.properties.additionalMjHeadContent)
+
+    return `<mjml>${mjHead}${mjml}</mjml>`;
 }
 
 function edie2hbstext(edieJson) {
@@ -160,6 +174,9 @@ const createEmptyFormat = (v) => {
             id: 'main',
             type: 'main',
             children: [],
+            properties: {
+                additionalMjHeadContent: ''
+            }
         },
     };
 };

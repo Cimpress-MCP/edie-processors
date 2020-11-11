@@ -1,9 +1,7 @@
 import htmlToText from 'html-to-text';
-import {encloseInMjmlSection} from './common/base';
 
 const mjmlToMjml = (item, blockRenderer, isTopLevelNode) => {
-    const content = item.properties.content;
-    return isTopLevelNode ? encloseInMjmlSection(content) : content;
+    return item.properties.content;
 };
 
 const mjmlToText = (item, blockRenderer, isTopLevelNode) => {
