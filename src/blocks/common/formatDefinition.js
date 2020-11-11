@@ -70,6 +70,7 @@ const EDIE_PROPS = {
         padding: propAsAttribute(),
         border: propAsComputed(computeBorder),
         content: propAsBody(),
+        class: propTranslated('mj-class'),
     },
     [EDIE_BLOCK_TYPE.IMAGE]: {
         __selfClosing: true,
@@ -85,6 +86,7 @@ const EDIE_PROPS = {
         backgroundColor: propTranslated('container-background-color'),
         padding: propAsAttribute(),
         border: propAsComputed(computeBorder),
+        class: propTranslated('mj-class'),
     },
     [EDIE_BLOCK_TYPE.COLUMN]: {
         width: propAsAttribute(),
@@ -95,6 +97,7 @@ const EDIE_PROPS = {
         borderColor: propAsSkip(),
         border: propAsComputed(computeBorder),
         children: propAsBody(),
+        class: propTranslated('mj-class'),
     },
     [EDIE_BLOCK_TYPE.ROW]: {
         padding: propAsAttribute(),
@@ -104,12 +107,14 @@ const EDIE_PROPS = {
         border: propAsComputed(computeBorder),
         children: propAsBody(),
         fullWidth: propTranslated('full-width'),
+        class: propTranslated('mj-class'),
     },
     [EDIE_BLOCK_TYPE.TEXT]: {
         backgroundColor: propTranslated('container-background-color'),
         padding: propAsAttribute(),
         content: propAsBody(),
         treatParagraphsAsDiv: propAsSkip(),
+        class: propTranslated('mj-class'),
     },
     [EDIE_BLOCK_TYPE.VSPACER]: {
         __selfClosing: true,
@@ -118,21 +123,24 @@ const EDIE_PROPS = {
         lineColor: propTranslated('border-color'),
         backgroundColor: propTranslated('container-background-color'),
         padding: propAsAttribute(),
+        class: propTranslated('mj-class'),
     },
     [EDIE_BLOCK_TYPE.MAIN]: {
         padding: propAsAttribute(),
         fullWidth: propTranslated('full-width'),
+        class: propTranslated('mj-class'),
         emailBackgroundColor: propTranslated('background-color'),
         emailWidth: propTranslated('width'),
         backgroundColor: propAsSkip(),
         children: propAsBody(),
         //
-        // These are marked as 'skipped' because of speial handling outside
+        // These are marked as 'skipped' because of special handling outside
         // of the scope of MAIN element. Added here for consistency.
         defaultTextLineHeight: propAsSkip(),
         defaultRowPadding: propAsSkip(),
         defaultColumnPadding: propAsSkip(),
         defaultTextPadding: propAsSkip(),
+        additionalMjHeadContent: propAsSkip()
     },
     [EDIE_BLOCK_TYPE.LOOP]: {
         // Loop is a special type of element that has no representation as mj element
