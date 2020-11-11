@@ -95,7 +95,7 @@ function computeDefaultMjAttributes(edieJson) {
     let defaultRowPadding = edieJson.structure.properties.defaultRowPadding || '0px';
     let defaultColumnPadding = edieJson.structure.properties.defaultColumnPadding || '5px';
     let defaultTextPadding = edieJson.structure.properties.defaultTextPadding || '5px';
-    let defaultTextLineHeight = edieJson.structure.properties.c || '18px';
+    let defaultTextLineHeight = edieJson.structure.properties.defaultTextLineHeight || '18px';
 
     return `<mj-attributes>
         <mj-section background-color="${defaultBackground}" padding="${defaultRowPadding}"/>
