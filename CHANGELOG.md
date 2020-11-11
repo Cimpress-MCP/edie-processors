@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.3.0] - 2020.11.11
 ### Added
 - Removed enclosing section for mjml block
-- Added additionalMjHeadContent property for 'main' element. It's content will be included in mj-head
+- Added additionalMjHeadContent property for 'main' element. Its content will be included in mj-head
+- Added 'class' property for all elements (except raw, loop, mjml) that would be converted to mj-class
 
 ## [1.2.0] - 2020.09.25
 ### Added
