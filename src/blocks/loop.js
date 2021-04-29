@@ -34,7 +34,30 @@ const loopToText = (item, blockRenderer, isTopLevelNode) => {
         + '\r\n';
 };
 
+const loopToCsv = (item, blockRenderer, isTopLevelNode, templateMetadata) => {
+    let titles = '';
+    let items = '';
+
+    if (templateMetadata.titlesEnabled) {
+        (item.children || []).forEach((x) => {
+            titles += blockRenderer(x, blockRenderer, isTopLevelNode, templateMetadata);
+        });
+    }
+
+    (item.children || []).forEach((x) => {
+        // make titlesEnabled false so that columnToCsv will consider 'text' and not 'title'
+        items += blockRenderer(x, blockRenderer, isTopLevelNode, {...templateMetadata, titlesEnabled: false});
+    });
+
+    return titles
+        + '{{#' + item.properties.loopPath + '}}\r\n'
+        + items
+        + '{{/' + getLoopSectionEndBlock(item.properties.loopPath) + '}}'
+        + '\r\n';
+};
+
 export {
     loopToMjml,
     loopToText,
+    loopToCsv,
 };

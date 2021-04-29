@@ -21,7 +21,18 @@ const rowToText = (item, blockRenderer, isTopLevelNode) => {
     return result + '\r\n';
 };
 
+const rowToCsv = (item, blockRenderer, isTopLevelNode, templateMetadata) => {
+    let result = '';
+    (item.children || []).forEach((x, index) => {
+        // Note: All children of a row are NOT top level elements
+        result += blockRenderer(x, blockRenderer, false, templateMetadata);
+        result += index === item.children.length - 1 ? '' : templateMetadata.xCsvSeparator;
+    });
+    return result + '\r\n';
+};
+
 export {
     rowToMjml,
     rowToText,
+    rowToCsv,
 };

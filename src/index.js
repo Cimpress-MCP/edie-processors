@@ -1,11 +1,11 @@
 import uuidv1 from 'uuid/v1';
 import {EDIE_BLOCK_TYPE} from './blocks/common/formatDefinition';
-import {mainToMjml, mainTotext} from './blocks/main';
+import {mainToCsv, mainToMjml, mainTotext} from './blocks/main';
 import {extractColorClasses, textToMjml, textToText} from './blocks/text';
-import {rowToMjml, rowToText} from './blocks/row';
-import {columnToMjml, columnToText} from './blocks/column';
+import {rowToCsv, rowToMjml, rowToText} from './blocks/row';
+import {columnToCsv, columnToMjml, columnToText} from './blocks/column';
 import {buttonToMjml, buttonToText} from './blocks/button';
-import {loopToMjml, loopToText} from './blocks/loop';
+import {loopToCsv, loopToMjml, loopToText} from './blocks/loop';
 import {vspacerToMjml, vspacerToText} from './blocks/vspacer';
 import {imageToMjml, imageToText} from './blocks/image';
 import {mjmlToText, mjmlToMjml} from './blocks/mjml';
@@ -90,6 +90,27 @@ const blockToText = (item, childrenRenderer, isTopLevelNode) => {
     return renderer(item, childrenRenderer, isTopLevelNode);
 };
 
+const blockToCsv = (item, childrenRenderer, isTopLevelNode, templateMetadata) => {
+    let renderer = null;
+    switch (item.type) {
+    case EDIE_BLOCK_TYPE.MAIN:
+        renderer = mainToCsv;
+        break;
+    case EDIE_BLOCK_TYPE.ROW:
+        renderer = rowToCsv;
+        break;
+    case EDIE_BLOCK_TYPE.LOOP:
+        renderer = loopToCsv;
+        break;
+    case EDIE_BLOCK_TYPE.COLUMN:
+        renderer = columnToCsv;
+        break;
+    default:
+        return `Conversion of ${item.type} to TEXT not implemented.`;
+    }
+    return renderer(item, childrenRenderer, isTopLevelNode, templateMetadata);
+};
+
 function computeDefaultMjAttributes(edieJson) {
     let defaultBackground = edieJson.structure.properties.backgroundColor || '#ffffff';
     let defaultRowPadding = edieJson.structure.properties.defaultRowPadding || '0px';
@@ -160,6 +181,14 @@ function edie2hbstext(edieJson) {
     }
 
     return blockToText(edieJson.structure, blockToText, true);
+}
+
+function edie2hbscsv(edieJson) {
+    if (!supportedVersions.includes(edieJson.formatVersion)) {
+        return 'Not supported version!';
+    }
+
+    return blockToCsv(edieJson.structure, blockToCsv, true, edieJson.meta);
 }
 
 const createEmptyFormat = (v) => {
@@ -259,6 +288,7 @@ export {
     EDIE_BLOCK_TYPE,
     edie2hbsmjml,
     edie2hbstext,
+    edie2hbscsv,
     createEmptyBlock,
     createEmptyFormat,
 };
