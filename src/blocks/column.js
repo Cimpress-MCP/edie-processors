@@ -22,7 +22,7 @@ const columnToText = (item, childrenRenderer, isTopLevelNode) => {
 
 const columnToCsv = (item, childrenRenderer, isTopLevelNode, templateMetadata) => {
     let result = '';
-    let content = templateMetadata.titlesEnabled ? item.properties.metadata.title : item.properties.metadata.text;
+    let content = templateMetadata.showHeaders ? item.properties.metadata.header : item.properties.metadata.text;
     result += '"' + content + '"';
     return result;
 };

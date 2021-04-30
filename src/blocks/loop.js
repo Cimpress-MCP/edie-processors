@@ -35,21 +35,21 @@ const loopToText = (item, blockRenderer, isTopLevelNode) => {
 };
 
 const loopToCsv = (item, blockRenderer, isTopLevelNode, templateMetadata) => {
-    let titles = '';
+    let headers = '';
     let items = '';
 
-    if (templateMetadata.titlesEnabled) {
+    if (templateMetadata.showHeaders) {
         (item.children || []).forEach((x) => {
-            titles += blockRenderer(x, blockRenderer, isTopLevelNode, templateMetadata);
+            headers += blockRenderer(x, blockRenderer, isTopLevelNode, templateMetadata);
         });
     }
 
     (item.children || []).forEach((x) => {
-        // make titlesEnabled false so that columnToCsv will consider 'text' and not 'title'
-        items += blockRenderer(x, blockRenderer, isTopLevelNode, {...templateMetadata, titlesEnabled: false});
+        // make showHeaders false so that columnToCsv will consider 'text' and not 'header'
+        items += blockRenderer(x, blockRenderer, isTopLevelNode, {...templateMetadata, showHeaders: false});
     });
 
-    return titles
+    return headers
         + '{{#' + item.properties.loopPath + '}}\r\n'
         + items
         + '{{/' + getLoopSectionEndBlock(item.properties.loopPath) + '}}'
