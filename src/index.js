@@ -106,7 +106,7 @@ const blockToCsv = (item, childrenRenderer, isTopLevelNode, templateMetadata) =>
         renderer = columnToCsv;
         break;
     default:
-        return `Conversion of ${item.type} to TEXT not implemented.`;
+        return `Conversion of ${item.type} to CSV not implemented.`;
     }
     return renderer(item, childrenRenderer, isTopLevelNode, templateMetadata);
 };
