@@ -34,7 +34,16 @@ const mainTotext = (item, blockRenderer) => {
     return items + '\r\n';
 };
 
+const mainToCsv = (item, blockRenderer, isTopLevelNode, templateMetadata) => {
+    let items = '';
+    (item.children || []).forEach((x) => {
+        items += blockRenderer(x, blockRenderer, true, templateMetadata);
+    });
+    return items;
+};
+
 export {
     mainToMjml,
     mainTotext,
+    mainToCsv,
 };

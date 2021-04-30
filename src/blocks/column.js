@@ -20,7 +20,15 @@ const columnToText = (item, childrenRenderer, isTopLevelNode) => {
     return result + '\r\n';
 };
 
+const columnToCsv = (item, childrenRenderer, isTopLevelNode, templateMetadata) => {
+    let result = '';
+    let content = templateMetadata.titlesEnabled ? item.properties.metadata.title : item.properties.metadata.text;
+    result += '"' + content + '"';
+    return result;
+};
+
 export {
     columnToMjml,
     columnToText,
+    columnToCsv,
 };
