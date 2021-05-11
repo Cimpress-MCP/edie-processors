@@ -28,7 +28,7 @@ const rowToCsv = (item, blockRenderer, isTopLevelNode, templateMetadata) => {
         result += blockRenderer(x, blockRenderer, false, templateMetadata);
         result += index === item.children.length - 1 ? '' : templateMetadata.xCsvSeparator;
     });
-    return result + '\r\n';
+    return result + '\n';
 };
 
 export {
