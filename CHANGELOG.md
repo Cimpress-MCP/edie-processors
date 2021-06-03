@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.4.4] - 2021.06.03
+### Fixed
+- Don't loop if loopPath is not present for loopToCsv
+
 ## [1.4.3] - 2021.05.12
 ### Changed
 - Changed new line character from "\r\n" to "\n" for edie2hbscsv
