@@ -49,10 +49,12 @@ const loopToCsv = (item, blockRenderer, isTopLevelNode, templateMetadata) => {
         items += blockRenderer(x, blockRenderer, isTopLevelNode, {...templateMetadata, showHeaders: false});
     });
 
-    return headers
-        + '{{#' + item.properties.loopPath + '}}'
-        + items
-        + '{{/' + getLoopSectionEndBlock(item.properties.loopPath) + '}}';
+    return item.properties.loopPath
+        ? headers
+          + '{{#' + item.properties.loopPath + '}}'
+          + items
+          + '{{/' + getLoopSectionEndBlock(item.properties.loopPath) + '}}'
+        : headers + items;
 };
 
 export {
