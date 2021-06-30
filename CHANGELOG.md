@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2021.06.30
+### Added
+- Introduced a new Block - Sub Template for supporting Partial Templates in EDIE Templates
+- Fixed the condition for returning null in createEmptyFormat
+
 ## [1.4.4] - 2021.06.03
 ### Fixed
 - Don't loop if loopPath is not present for loopToCsv

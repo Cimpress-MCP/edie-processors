@@ -11,6 +11,7 @@ import {imageToMjml, imageToText} from './blocks/image';
 import {mjmlToText, mjmlToMjml} from './blocks/mjml';
 import {rawToMjml, rawToText} from './blocks/raw';
 import {currentVersion, supportedVersions} from './versions';
+import {subtemplateToMjml, subtemplateToText} from './blocks/subtemplate';
 
 const blockToMjml = (item, childrenRenderer, isTopLevelNode) => {
     let renderer = null;
@@ -44,6 +45,9 @@ const blockToMjml = (item, childrenRenderer, isTopLevelNode) => {
         break;
     case EDIE_BLOCK_TYPE.RAW:
         renderer = rawToMjml;
+        break;
+    case EDIE_BLOCK_TYPE.SUB_TEMPLATE:
+        renderer = subtemplateToMjml;
         break;
     default:
         return `Conversion of ${item.type} to MJML not implemented.`;
@@ -83,6 +87,9 @@ const blockToText = (item, childrenRenderer, isTopLevelNode) => {
         break;
     case EDIE_BLOCK_TYPE.RAW:
         renderer = rawToText;
+        break;
+    case EDIE_BLOCK_TYPE.SUB_TEMPLATE:
+        renderer = subtemplateToText;
         break;
     default:
         return `Conversion of ${item.type} to TEXT not implemented.`;
@@ -192,7 +199,7 @@ function edie2hbscsv(edieJson) {
 }
 
 const createEmptyFormat = (v) => {
-    if (!supportedVersions.includes(v)) {
+    if (v && !supportedVersions.includes(v)) {
         return null;
     }
 
@@ -269,6 +276,13 @@ function createEmptyBlock(type) {
     case EDIE_BLOCK_TYPE.MJML:
     case EDIE_BLOCK_TYPE.RAW:
         props = {
+        };
+        break;
+    case EDIE_BLOCK_TYPE.SUB_TEMPLATE:
+        props = {
+            templateUrn: '',
+            templateName: '',
+            parameters: {},
         };
         break;
 
