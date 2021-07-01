@@ -176,10 +176,12 @@ function edie2hbsmjml(edieJson) {
     let mjml = blockToMjml(edieJson.structure, blockToMjml, true);
     let mjHead = computeMjHead(edieJson, mjml, edieJson.structure.properties.additionalMjHeadContent);
 
+    if (edieJson.structure.properties.isPartialTemplate) return mjml;
+
     return `<mjml>
-${mjHead}
-${mjml}
-</mjml>`;
+        ${mjHead}
+        ${mjml}
+    </mjml>`;
 }
 
 function edie2hbstext(edieJson) {
