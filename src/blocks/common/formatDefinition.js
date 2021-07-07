@@ -152,7 +152,6 @@ const EDIE_PROPS = {
     },
     [EDIE_BLOCK_TYPE.SUB_TEMPLATE]: {
         templateUrn: propAsBody(),
-        templateName: propAsBody(),
         parameters: propAsBody(),
     },
 };

@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.5.0] - 2021.06.30
 ### Added
-- Introduced a new Block - Sub Template for supporting Partial Templates in EDIE Templates
+- Introduced a new block called "subtemplate" for supporting Partial Templates in EDIE Templates
 - Fixed the condition for returning null in createEmptyFormat
 
 ## [1.4.4] - 2021.06.03

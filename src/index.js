@@ -283,7 +283,6 @@ function createEmptyBlock(type) {
     case EDIE_BLOCK_TYPE.SUB_TEMPLATE:
         props = {
             templateUrn: '',
-            templateName: '',
             parameters: {},
         };
         break;
