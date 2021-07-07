@@ -7,6 +7,10 @@ const mainToMjml = (item, blockRenderer) => {
         items += blockRenderer(x, blockRenderer, true);
     });
 
+    if (item.properties.isPartialTemplate) {
+        return items;
+    }
+
     item.properties.children = items;
 
     if (item.properties.emailWidth && item.properties.emailWidth.indexOf('%') === -1) {

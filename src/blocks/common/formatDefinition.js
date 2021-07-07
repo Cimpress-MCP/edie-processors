@@ -11,6 +11,7 @@ const EDIE_BLOCK_TYPE = {
     IMAGE: 'image',
     RAW: 'raw',
     MJML: 'mjml',
+    SUB_TEMPLATE: 'subtemplate',
 };
 
 const EDIE_PROP_TYPE = {
@@ -148,6 +149,10 @@ const EDIE_PROPS = {
     },
     [EDIE_BLOCK_TYPE.RAW]: {
         content: propAsBody(),
+    },
+    [EDIE_BLOCK_TYPE.SUB_TEMPLATE]: {
+        templateUrn: propAsBody(),
+        parameters: propAsBody(),
     },
 };
 
